@@ -1044,10 +1044,14 @@ p,
 
 /* Mobile Only ----------- */
 /* Desktops and laptops ----------- */
+.b-tile-row {
+  overflow: hidden; }
+
 .b-tile {
-  padding: 10px 40px 40px;
-  margin-bottom: 20px;
-  background-color: rgba(0, 0, 0, 0.1); }
+  margin-bottom: 30px; }
+  .b-tile .front,
+  .b-tile .back {
+    padding: 10px 40px 40px; }
   .b-tile h3 {
     margin-top: 20px;
     color: white;
@@ -1055,13 +1059,6 @@ p,
     text-transform: uppercase;
     opacity: .6;
     font-size: 1.8rem; }
-  .b-tile h4 {
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: rgba(0, 0, 0, 0.5);
-    margin-bottom: 0;
-    margin-top: 20px;
-    letter-spacing: .5px; }
   .b-tile p {
     color: rgba(0, 0, 0, 0.8); }
   .b-tile p:last-child {
@@ -1079,14 +1076,55 @@ p,
       text-transform: uppercase;
       padding: 3px;
       border-radius: 3px; }
+    .b-tile .e-more-info:hover a {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #472b74; }
+
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000; }
+
+/* flip the pane when hovered */
+.flip-container:hover .flipper,
+.flip-container.hover .flipper {
+  transform: rotateY(180deg); }
+
+.flip-container,
+.front,
+.back {
+  width: 100%;
+  height: inherit; }
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative; }
+
+/* hide back of pane during swap */
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg); }
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg); }
 
 .b-page-title h1 {
   color: rgba(255, 255, 255, 0.8); }
 
 #homepage #intro {
   padding-top: 100px;
-  text-align: center;
-  margin-bottom: 0; }
+  text-align: center; }
   #homepage #intro h1 {
     font-size: 6rem; }
   #homepage #intro h3 {
@@ -1107,15 +1145,29 @@ p,
       font-weight: 100; }
   #homepage .b-big-question:last-of-type {
     margin: inherit; }
-#homepage .b-tile {
-  height: 640px; }
-  #homepage .b-tile h3 {
-    color: rgba(0, 0, 0, 0.6); }
+#homepage .b-tile .flip-container,
+#homepage .b-tile .flipper,
+#homepage .b-tile .front,
+#homepage .b-tile .back {
+  height: 600px; }
+#homepage .b-tile .front {
+  background-color: #472b74; }
+#homepage .b-tile .back {
+  background-color: rgba(0, 0, 0, 0.2); }
+#homepage .b-tile .e-tile-title {
+  text-align: left;
+  font-size: 4.3rem;
+  color: rgba(255, 255, 255, 0.8); }
+#homepage .b-tile h3 {
+  color: #472b74; }
 
 #about-govlab .govlab-logo {
   margin: 40px; }
 
 @media only screen and (min-width: 1024px) {
+  .b-logo {
+    max-width: 37%; }
+
   h2 {
     font-size: 3rem;
     line-height: 1.2; }

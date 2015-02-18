@@ -1,7 +1,12 @@
+.b-tile-row {
+	overflow: hidden;
+}
+
 .b-tile {
-	padding: 10px 40px 40px;
-	margin-bottom: 20px;
-	background-color: $gray_10;
+	margin-bottom: 30px;
+
+	.front,
+	.back { padding: 10px 40px 40px; }
 
 	h3 {
 		margin-top: 20px;
@@ -10,15 +15,6 @@
 		text-transform: uppercase;
 		opacity: .6;
 		font-size: 1.8rem;
-	}
-
-	h4 {
-		font-weight: 600;
-		font-size: 1.2rem;
-		color: $gray_50;
-		margin-bottom: 0;
-		margin-top: 20px;
-		letter-spacing: .5px;
 	}
 
 	p { color: $gray_80; }
@@ -38,6 +34,11 @@
 			text-transform: uppercase;
 			padding: 3px;
 			border-radius: 3px;
+		}
+
+		&:hover a {
+			background-color: $white_80;
+			color: $purple;
 		}
 	}
 }

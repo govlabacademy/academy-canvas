@@ -3,7 +3,6 @@
 	#intro {
 		padding-top: 100px;	
 		text-align: center;
-		margin-bottom: 0;
 
 		h1 { font-size: 6rem; }
 		h3 { 
@@ -29,16 +28,25 @@
 			}
 		}
 
-		&:last-of-type {
-			margin: inherit;
-		}
+		&:last-of-type { margin: inherit; }
 	}
 
 	.b-tile {
-		height: 640px;
-		h3 {
-			color: $gray_60;
-		}	
+		.flip-container,
+		.flipper,
+		.front,
+		.back { height: 600px; }
+
+		.front { background-color: $purple; }
+		.back { background-color: $gray_20; }
+
+		.e-tile-title {
+			text-align: left;
+			font-size: 4.3rem;
+			color: $white_80;
+		}
+		
+		h3 { color: $purple; }	
 	}
 	
 }

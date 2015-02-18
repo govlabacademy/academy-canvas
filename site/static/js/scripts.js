@@ -28,4 +28,19 @@ $('#overlay').click(function() {
 //  });
 
 
+
+// RSS from Digest
+$('#blog-container-home').rssfeed('http://thegovlab.org/scan/feed/', 
+  { 
+    limit: 5
+  });
+
+// RSS from Digest
+$('#blog-container').rssfeed('http://thegovlab.org/scan/feed/', 
+  { 
+    limit: 10,
+    content: true,
+    media: true
+  });
+
  }); // Closes Document.ready
