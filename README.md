@@ -18,6 +18,6 @@
 - UNDO button (inbox style)
 
 
-### (*)Comments
+#### (*)Comments
 
 The comments section is intended for coaches to provide feedback on the different answers on teh canvas. Initially we will just have a comments section, open to anyone. If later on, we feel the need to restrict this comments to coaches only, we create this feature.  
