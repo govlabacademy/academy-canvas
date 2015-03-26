@@ -1,0 +1,76 @@
+.b-logo {
+  padding-left: 20px;
+}
+
+.b-canvas-title {
+  margin-top: 60px;
+  margin-bottom: 20px;
+
+  h1 {
+    color: $gray_40;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 300;
+  }
+
+}
+
+.b-canvas {
+  margin: 30px 20px 60px;
+
+  .e-canvas-section {
+    position: relative;
+    border: 1px solid $gray_20;
+    background-color: $white;
+    vertical-align: top;
+    margin: 5px;
+    flex: 1;
+    padding: 20px;
+    @include drop-shadow-light;
+    min-height: 200px;
+
+    h3 {
+      font-size: 20px;
+      color: $purple;
+    }
+
+    .e-canvas-content {
+      p {        
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width : $desktop_width) {
+.b-canvas-title {
+  margin-top: 100px;
+  margin-bottom: 20px;
+
+  h1 {
+    color: $gray_40;
+    font-size: 3rem;
+    font-weight: 100;
+  }
+
+}
+
+.b-top-navigation.m-full {
+  padding: 0 10px;
+}
+
+.b-canvas {
+  margin-top: 40px;
+
+  .e-canvas-line {
+    display: flex;
+  }
+
+  .e-canvas-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+}

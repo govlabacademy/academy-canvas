@@ -15,20 +15,13 @@ body, h1, h2, h3, h4, h5, input {
 @import "header";
 @import "off-canvas-menu";
 @import "footer";
-@import "messages";
 @import "layout";
 @import "pop-buttons";
 @import "form";
-@import "list";
 
 
 // Site specific Styles
-@import "tiles";
-@import "flipper";
-@import "sections";
-
-@import "homepage";
-@import "about";
+@import "canvas";
 
 
 
