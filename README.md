@@ -6,7 +6,7 @@
 - Renders a blank canvas with a unique URL ( suggestion: canvas.govlab.org/username )
 - User fills in his info in the boxes (content editable)
 - the URL shows the canvas information. If logged in, contenteditable is enable
-- one URL (canvas.govlab.org/list), that lists all the links to all the canvases.
+- one URL (canvas.govlab.org/list), that lists all the links to all the canvases. This is for the course admin.
 
 ## Nice to have
 
