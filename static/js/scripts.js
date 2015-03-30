@@ -24,8 +24,9 @@ $(document).ready(function() {
 
     db.child('users').once('value', function(snapshot) {
       for (var obj in snapshot.val()) {
-        var $a = $('<a/>').attr('href', '?user=' + obj);
+        var $a = $('<a/>');
 
+        $a.attr('href', window.location.pathname + '?user=' + obj);
         $a.text(snapshot.val()[obj].name);
 
         $('.b-offcanvas').append($a);
@@ -42,11 +43,13 @@ $(document).ready(function() {
         if (auth || usr) {
             if (auth) {
                 if (!usr || usr == auth.uid) {
+                    var url = window.location.pathname + '?user=' + auth.uid;
+
                     usr = auth.uid;
 
                     $('.e-canvas-textarea').prop('disabled', false);
 
-                    history.pushState(null, null, '/?user=' + auth.uid);
+                    history.pushState(null, null, url);
                 }
 
                 $('.e-canvas-logout').removeClass('display-none');
@@ -160,7 +163,7 @@ $(document).ready(function() {
         $('#canvas').addClass('display-none');
         $('.e-canvas-logout').addClass('display-none');
 
-        history.pushState(null, null, '/');
+        history.pushState(null, null, window.location.pathname);
     });
 });
 
