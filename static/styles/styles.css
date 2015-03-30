@@ -608,12 +608,55 @@ p,
 
   .fr_after_submit_page p {
     font-size: 3rem; } }
-#login .e-login-button {
-  width: 300px;
-  cursor: pointer; }
+#login {
+  padding-top: 150px; }
+  #login .b-panel {
+    text-align: center; }
+  #login .e-login-button {
+    width: 300px;
+    cursor: pointer; }
+
+.b-panel {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+  vertical-align: top;
+  margin: 5px;
+  flex: 1;
+  padding: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }
+  .b-panel h3 {
+    margin-bottom: 30px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 2rem;
+    font-weight: 100; }
+
+.b-offcanvas {
+  margin-left: 0; }
+  .b-offcanvas a {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 6px 10px;
+    margin: 0 15px;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-weight: 400; }
 
 .b-logo {
   padding-left: 20px; }
+
+.b-system-message {
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: absolute;
+  top: 57px;
+  width: 100%;
+  padding: 9px 0 0; }
+  .b-system-message p {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    line-height: 1; }
 
 .b-canvas-title {
   margin-top: 60px;

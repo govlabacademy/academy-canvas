@@ -1,6 +1,44 @@
 #login {
+  padding-top: 150px;
+
+  .b-panel {
+    text-align: center;
+  }
+
 	.e-login-button {
 		width: 300px;
 		cursor: pointer;
 	}
+}
+
+.b-panel {
+  position: relative;
+  border: 1px solid $gray_20;
+  background-color: $white;
+  vertical-align: top;
+  margin: 5px;
+  flex: 1;
+  padding: 20px;
+  @include drop-shadow-light;
+
+
+  h3 {
+    margin-bottom: 30px;
+    color: $gray_60;
+    font-size: 2rem;
+    font-weight: 100;
+  }
+}
+
+.b-offcanvas {
+  margin-left: 0;
+  
+  a {
+    color: $gray_80;
+    padding: 6px 10px;
+    margin: 0 15px;
+    display: block;
+    border-bottom: 1px solid $gray_20;
+    font-weight: 400;
+  }  
 }
