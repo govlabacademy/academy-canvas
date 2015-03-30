@@ -35,16 +35,42 @@
     }
 
     .e-canvas-content {
-      p {        
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
         font-size: 1.1rem;
-      }
+
+        .e-canvas-textarea {
+          width: 100%;
+          height: 100%;
+          padding: 10px 15px;
+          border: 1px solid transparent;
+          background-color: transparent;
+          resize: none;
+          outline: 0;
+          font-family: proxima-nova, sans-serif !important;
+
+          &:disabled {
+            box-shadow: none;
+          }
+
+          &:hover:enabled {
+            border: 1px solid #ccc;
+          }
+
+          &:focus:enabled {
+            border: 1px solid #ccc;
+          }
+        }
     }
   }
 }
 
 @media only screen and (min-width : $desktop_width) {
 .b-canvas-title {
-  margin-top: 100px;
+  margin-top: 40px;
   margin-bottom: 20px;
 
   h1 {

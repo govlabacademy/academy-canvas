@@ -16,6 +16,20 @@
 	}
 }
 
+.b-offcanvas {
+	padding-top: 80px;
+	margin-left: 30px;
+	background-color: transparent;
+
+	a {
+		display: block;
+	}
+}
+
+.display-none {
+	display: none;
+}
+
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : $desktop_width) {
 
