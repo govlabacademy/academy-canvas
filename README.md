@@ -1,6 +1,6 @@
 # GovLab Canvas
 
-## Spec update
+## Spec update (Core)
 - Let's take out the login thing. 
 - Landing page shows a list of all the canvas and a buttom to create one.
 - Everyone can edit everything.
