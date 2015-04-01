@@ -26,6 +26,15 @@
   }
 }
 
+.b-project-list {
+  .e-project-list-item {
+    padding: 3px 10px 4px;
+    border-bottom: 1px solid $gray_10;
+    margin-bottom: 5px;
+  }
+}
+
+
 .b-canvas-title {
   margin-top: 60px;
   margin-bottom: 20px;
@@ -58,9 +67,15 @@
       color: $purple;
     }
 
+    h4 {
+      font-size: 14px;
+      font-style: italic;
+      color: $gray_60;
+    }
+
     .e-canvas-content {
         position: absolute;
-        top: 60px;
+        top: 90px;
         left: 20px;
         right: 20px;
         bottom: 20px;

@@ -610,6 +610,9 @@ p,
 
   .fr_after_submit_page p {
     font-size: 3rem; } }
+#landing {
+  padding-top: 150px; }
+
 #login {
   padding-top: 150px; }
   #login .b-panel {
@@ -673,6 +676,11 @@ p,
     font-weight: 400;
     line-height: 1; }
 
+.b-project-list .e-project-list-item {
+  padding: 3px 10px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px; }
+
 .b-canvas-title {
   margin-top: 60px;
   margin-bottom: 20px; }
@@ -697,9 +705,13 @@ p,
     .b-canvas .e-canvas-section h3 {
       font-size: 20px;
       color: #472b74; }
+    .b-canvas .e-canvas-section h4 {
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(0, 0, 0, 0.6); }
     .b-canvas .e-canvas-section .e-canvas-content {
       position: absolute;
-      top: 60px;
+      top: 90px;
       left: 20px;
       right: 20px;
       bottom: 20px;
