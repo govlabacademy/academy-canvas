@@ -8,12 +8,19 @@
 - Renders a blank canvas with a unique URL ( suggestion: canvas.govlab.org/project-name )
 - User fills in his info in the boxes (content editable)
 - the URL shows the canvas information. (Always editable for now)
-- comments section for each canvas page. Anyone can comment on anything
+- comments section for each canvas page. Anyone can comment on anything *
 - autosave, instead of save button (status message to inform the user that it is saved)
 
 ## Nice to have
 - print CSS for Letter-sized paper (multipage)
 - markdown support
+
+### (*) Comments Section
+The comments section will work the same way as the canvas-content textarea. The ".e-canvas-comment" element is appended once we click on the ".e-add-comment" element. (can be a hide() and show())
+
+## HTML Updates
+I needed to change a lot of the HTML, adding canvas sections, changing the question texts, etc. 
+
 
 
 
