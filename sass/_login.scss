@@ -32,7 +32,7 @@
 
 .b-offcanvas {
   margin-left: 0;
-  
+
   a {
     color: $gray_80;
     padding: 6px 10px;
@@ -40,5 +40,19 @@
     display: block;
     border-bottom: 1px solid $gray_20;
     font-weight: 400;
-  }  
+  }
+}
+
+.b-edit-canvas {
+  h3 {
+    margin-bottom: 30px;
+    color: $gray_60;
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  .e-button {
+    float: right;
+    margin: 0;
+  }
 }

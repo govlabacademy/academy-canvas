@@ -323,9 +323,11 @@ p,
     padding: 30px 0 0; }
     .b-footer .e-partners {
       margin-bottom: 30px; } }
+.off-canvas-wrap {
+  min-height: 100%; }
+
 .b-main-content {
-  padding-top: 60px;
-  min-height: 87.7vh; }
+  padding-top: 58px; }
 
 .b-content-page {
   padding: 0 0 20px 0; }
@@ -641,6 +643,15 @@ p,
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-weight: 400; }
 
+.b-edit-canvas h3 {
+  margin-bottom: 30px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 2rem;
+  font-weight: 100; }
+.b-edit-canvas .e-button {
+  float: right;
+  margin: 0; }
+
 .b-logo {
   padding-left: 20px; }
 
@@ -648,9 +659,13 @@ p,
   background-color: rgba(0, 0, 0, 0.2);
   text-align: center;
   position: absolute;
-  top: 57px;
+  top: 25px;
   width: 100%;
-  padding: 9px 0 0; }
+  padding: 9px 0 0;
+  z-index: -1;
+  transition: all 0.4s ease; }
+  .b-system-message.m-visible {
+    top: 58px; }
   .b-system-message p {
     font-size: 1rem;
     text-transform: uppercase;
@@ -699,7 +714,8 @@ p,
         outline: 0;
         font-family: proxima-nova, sans-serif !important; }
         .b-canvas .e-canvas-section .e-canvas-content .e-canvas-textarea:disabled {
-          box-shadow: none; }
+          box-shadow: none;
+          padding: 0; }
         .b-canvas .e-canvas-section .e-canvas-content .e-canvas-textarea:hover:enabled {
           border: 1px solid #ccc; }
         .b-canvas .e-canvas-section .e-canvas-content .e-canvas-textarea:focus:enabled {

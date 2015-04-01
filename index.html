@@ -7,14 +7,14 @@
     <title>The GovLab Canvas</title>
     <link rel="shortcut icon" href="static/img/favicon.ico?v=2" />
     <link rel="stylesheet" href="static/assets/foundation/css/foundation.css" />
-    <link rel="stylesheet" href="static/styles/styles.css" />
-
+    <link rel="stylesheet" href="static/styles/styles.css"/>
+    <script src="//use.typekit.net/dbz7duw.js"></script>
     <script src="static/assets/foundation/js/vendor/modernizr.js"></script>
     <script src="static/assets/foundation/js/vendor/jquery.js"></script>
     <script src="static/assets/foundation/js/foundation.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
     <script src="static/js/scripts.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body>
@@ -26,20 +26,24 @@
             <span class="e-mainnav-trigger"><i class="fa-bars fa"></i></span>
             <h2>Menu</h2>
             <li><a href="#" class="left-off-canvas-toggle">List</a></li>
+            <li class="e-canvas-edit display-none"><span data-reveal-id="edit-canvas">Edit</span></li>
+            <li class="e-canvas-login display-none"><span>Login</span></li>
             <li class="e-canvas-logout display-none"><span>Logout</span></li>
             <!-- <li><a class="m-disabled" href="#">Library</a></li> -->
           </ul>
         </nav>
       </div>
+
+      <div class="b-system-message">
+        <p>Canvas Saved</p>
+      </div>
     </header>
 
     <div class="off-canvas-wrap" data-offcanvas>
       <div class="inner-wrap">
-        <aside class="b-offcanvas left-off-canvas-menu">
-        </aside>
+        <aside class="b-offcanvas left-off-canvas-menu"></aside>
 
         <section id="login" class="b-main-content display-none">
-
           <div class="row">
             <div class="column large-9 large-centered">
               <div class="b-panel">
@@ -49,25 +53,9 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="column large-9 large-centered">
-              <div class="b-panel">
-                <h3>Setup your Canvas</h3>
-                <input type="text" placeholder="Custom URL">
-                <input type="text" placeholder="Canvas Name">
-              </div>
-            </div>
-          </div>
         </section>
 
-
         <section id="canvas" class="b-main-content off-canvas-wrap display-none">
-          
-          <div class="b-system-message">
-            <p>Canvas Saved</p>
-          </div>
-          
-
           <section class="b-content-section b-canvas-title">
             <div class="row">
               <div class="column large-12">
@@ -75,8 +63,6 @@
               </div>
             </div>
           </section>
-
-          
 
           <section class="b-content-section b-canvas">
             <div class="e-canvas-line">
@@ -88,6 +74,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
                   <h3>The Big Idea</h3>
@@ -95,6 +82,7 @@
                     <textarea id="canvas-idea" class="e-canvas-textarea" disabled="disabled"></textarea>
                   </div>
                 </div>
+
                 <div class="e-canvas-section">
                   <h3>Theory of Change</h3>
                   <div class="e-canvas-content">
@@ -102,6 +90,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
                   <h3>Solution</h3>
@@ -111,6 +100,7 @@
                 </div>
               </div>
             </div>
+
             <div class="e-canvas-line">
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
@@ -119,6 +109,7 @@
                     <textarea id="canvas-channels" class="e-canvas-textarea" disabled="disabled"></textarea>
                   </div>
                 </div>
+
                 <div class="e-canvas-section">
                   <h3>Metrics</h3>
                   <div class="e-canvas-content">
@@ -126,6 +117,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
                   <h3>Users</h3>
@@ -134,6 +126,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
                   <h3>Champions</h3>
@@ -141,6 +134,7 @@
                     <textarea id="canvas-champions" class="e-canvas-textarea" disabled="disabled"></textarea>
                   </div>
                 </div>
+
                 <div class="e-canvas-section">
                   <h3>Costs</h3>
                   <div class="e-canvas-content">
@@ -149,6 +143,7 @@
                 </div>
               </div>
             </div>
+
             <div class="e-canvas-line">
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
@@ -157,6 +152,7 @@
                     <textarea id="canvas-partners" class="e-canvas-textarea" disabled="disabled"></textarea>
                   </div>
                 </div>
+
                 <div class="e-canvas-section">
                   <h3>Impact</h3>
                   <div class="e-canvas-content">
@@ -164,6 +160,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
                   <h3>Competitors</h3>
@@ -171,6 +168,7 @@
                     <textarea id="canvas-competitors" class="e-canvas-textarea" disabled="disabled"></textarea>
                   </div>
                 </div>
+
                 <div class="e-canvas-section">
                   <h3>Sustainability</h3>
                   <div class="e-canvas-content">
@@ -178,6 +176,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="e-canvas-col">
                 <div class="e-canvas-section">
                   <h3>Opponents</h3>
@@ -185,6 +184,7 @@
                     <textarea id="canvas-opponents" class="e-canvas-textarea" disabled="disabled"></textarea>
                   </div>
                 </div>
+
                 <div class="e-canvas-section">
                   <h3>Risks/Barries</h3>
                   <div class="e-canvas-content">
@@ -196,24 +196,30 @@
           </section>
         </section>
 
-        <div id="overlay"></div>
-
         <a class="exit-off-canvas"></a>
+      </div>
+    </div>
 
-        <!-- Footer -->
-        <footer class="b-footer" >
-          <div class="row">
-            <div class="column large-6 small-12">
-              <h4>Sponsored by</h4>
-            </div>
-            <div class="column large-6 small-12">
+    <footer class="b-footer" >
+      <div class="row">
+        <div class="column large-6 small-12">
+          <h4>Sponsored by</h4>
+        </div>
+        <div class="column large-6 small-12">
+        </div>
+      </div>
+      <div class="row">
+        <p class="e-creative-commons">This work by The GovLab is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License.</a></p>
+      </div>
+    </footer>
 
-            </div>
-          </div>
-          <div class="row">
-            <p class="e-creative-commons">This work by The GovLab is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License.</a></p>
-          </div>
-        </footer>
+    <div id="edit-canvas" class="b-edit-canvas reveal-modal row" data-reveal>
+      <div class="column large-9 large-centered">
+          <h3>Rename Canvas</h3>
+
+          <input class="e-canvas-name" type="text" name="canvas_name" required placeholder="Canvas Name">
+
+          <div><span class="e-button">Save</span></div>
       </div>
     </div>
   </body>

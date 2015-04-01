@@ -6,10 +6,15 @@
   background-color: $gray_20;
   text-align: center;
   position: absolute;
-  top: 57px;
+  top: 25px;
   width: 100%;
   padding: 9px 0 0;
+  z-index: -1;
+  @include transition;
 
+  &.m-visible {
+    top: 58px;
+  }
 
   p {
     font-size: 1rem;
@@ -73,6 +78,7 @@
 
           &:disabled {
             box-shadow: none;
+            padding: 0;
           }
 
           &:hover:enabled {
