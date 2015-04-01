@@ -58,12 +58,14 @@
     vertical-align: top;
     margin: 5px;
     flex: 1;
+    display: flex;
+    flex-flow: column;
     padding: 20px;
     @include drop-shadow-light;
     min-height: 200px;
 
     h3 {
-      font-size: 20px;
+      font-size: 1.2rem;
       color: $purple;
     }
 
@@ -73,37 +75,65 @@
       color: $gray_60;
     }
 
-    .e-canvas-content {
-        position: absolute;
-        top: 90px;
-        left: 20px;
-        right: 20px;
-        bottom: 20px;
-        font-size: 1.1rem;
+    .e-add-comment {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      color: $gray_20;
 
-        .e-canvas-textarea {
-          width: 100%;
-          height: 100%;
-          padding: 10px 15px;
-          border: 1px solid transparent;
-          background-color: transparent;
-          resize: none;
-          outline: 0;
-          font-family: proxima-nova, sans-serif !important;
+      &:hover {
+        color: $purple !important;
+      }
+    }
 
-          &:disabled {
-            box-shadow: none;
-            padding: 0;
-          }
+    &:hover .e-add-comment { color: $gray_40; }
 
-          &:hover:enabled {
-            border: 1px solid #ccc;
-          }
+    &.m-commented .e-add-comment { display: none; }
 
-          &:focus:enabled {
-            border: 1px solid #ccc;
-          }
+    .e-canvas-textarea {
+      // width: 100%;
+      padding: 10px 15px;
+      resize: none;
+      flex: 2;
+      font-family: proxima-nova, sans-serif !important;
+
+      &:disabled {
+        box-shadow: none;
+        padding: 0;
+      }
+
+      &:hover:enabled {
+        border: 1px solid #ccc;
+      }
+
+      &:focus:enabled {
+        border: 1px solid #ccc;
+      }
+    }
+
+
+
+    .e-canvas-comment {
+      border-top: 1px solid $gray_20;
+      padding-top: 4px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: $gray_60;
+      padding: 5px 8px;
+      resize: none;
+      flex: 1;
+
+      .e-delete-comment {
+        float: right;
+        cursor: pointer;
+
+        &:hover {
+          color: $red;
         }
+      }
+
+      
     }
   }
 }
