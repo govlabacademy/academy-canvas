@@ -1,5 +1,24 @@
 # GovLab Canvas
 
+## Spec update
+- Let's take out the login thing. 
+- Landing page shows a list of all the canvas and a buttom to create one.
+- Everyone can edit everything.
+- The "create canvas" button activates a window to add a canvas name (check if unique)
+- Renders a blank canvas with a unique URL ( suggestion: canvas.govlab.org/project-name )
+- User fills in his info in the boxes (content editable)
+- the URL shows the canvas information. (Always editable for now)
+- comments section for each canvas page. Anyone can comment on anything
+- autosave, instead of save button (status message to inform the user that it is saved)
+
+## Nice to have
+- print CSS for Letter-sized paper (multipage)
+- markdown support
+
+
+
+# Old Specs
+
 ## Basic Usage (CORE)
 
 - User registers (oAuth - google>twitter>facebook>github) - https://www.firebase.com/docs/web/guide/login/github.html
