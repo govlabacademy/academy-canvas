@@ -1,8 +1,11 @@
 $(document).ready(function() {
-    var db = new Firebase('https://lean-canvas.firebaseio.com/'),
-        canvas_id = window.location.search.slice(6).replace('/', '');
+    var db = new Firebase('https://lean-canvas.firebaseio.com/');
 
     $(document).foundation();
+
+    state0(db);
+
+    window.onpopstate = function(event) { state0(db); };
 
     $('.e-mainnav-trigger').click(function() {
         var $trigger = $(this);
@@ -17,15 +20,10 @@ $(document).ready(function() {
         }
     });
 
-    if (!canvas_id) {
-        state1(db);
-
-    } else {
-        state2(db, canvas_id);
-    }
-
     $('.b-project-list').on('click', '.e-project-list-item a', function() {
-        state2(db, $(this).text());
+        state2(db, slugy($(this).text()));
+
+        return false;
     });
 
     $('.e-add-comment').click(function() {
@@ -34,16 +32,16 @@ $(document).ready(function() {
     });
 
     $('.b-create-canvas .e-button').click(function() {
-        var id = $(this).prev().val();
+        var id = slugy($(this).prev().val()),
+            name = $(this).prev().val();
 
-        db.child('canvases').child(id).once('value', function(snapshot) {
-            var doc = {},
-                url = location.pathname + '?user=';
-
+        db.child('canvas').child(id).once('value', function(snapshot) {
+            var doc = {};
 
             if (!snapshot.val()) {
                 doc.ux = '';
                 doc.foes = '';
+                doc.name = name;
                 doc.risk = '';
                 doc.costs = '';
                 doc.field = '';
@@ -84,16 +82,9 @@ $(document).ready(function() {
                 doc.supporters_comments = '';
                 doc.proposition_comments = '';
 
-                db.child('canvases').child(id).set(doc);
+                db.child('canvas').child(id).set(doc);
 
-                state0();
-
-                $('#canvas-name').text(id);
-                $('#edit-canvas .e-canvas-name').val(id);
-
-                history.pushState(null, null, url + id);
-
-                $('#canvas').removeClass('m-display-none');
+                state2(db, id, doc);
 
             } else {
                 notify('error', 'This canvas already exists');
@@ -109,11 +100,12 @@ $(document).ready(function() {
 
     $('.e-canvas-content, .e-canvas-comment').blur(function() {
         if ($(this).data('prev-val') != $(this).val()) {
-            var doc = {};
+            var id = slugy($('#canvas-name').text()),
+                doc = {};
 
             doc[$(this).attr('name')] = $(this).val();
 
-            db.child('canvases').child($('#canvas-name').text()).update(doc);
+            db.child('canvas').child(id).update(doc);
 
             notify('success', 'Canvas saved');
         }
@@ -125,13 +117,13 @@ $(document).ready(function() {
     //         url = location.pathname + '?user=' + new_id;
 
 
-    //     db.child('canvases').child(new_id).once('value', function(snapshot) {
+    //     db.child('canvas').child(new_id).once('value', function(snapshot) {
     //         var doc = {};
 
     //         if (!snapshot.val()) {
     //             doc.id = id;
 
-    //             db.child('canvases').child(old_id).update(doc);
+    //             db.child('canvas').child(old_id).update(doc);
 
     //             $('#canvas-name').text(new_id);
 
@@ -146,26 +138,48 @@ $(document).ready(function() {
     // });
 });
 
-function reset_inputs() {
-    $('.e-canvas-content').val('');
-    $('.e-canvas-comment').val('').addClass('m-display-none');
-    $('.e-add-comment').removeClass('display-none');
-    $('#canvas-name').text('Canvas');
-    $('#edit-canvas .e-canvas-name').val('');
+function slugy(value) {
+    var reg1 = /[\u0300-\u036F]/g; // Use XRegExp('\\p{M}', 'g');
+    var reg2 = /\s+/g;
+
+    // The "$.data('attribute')" is commonly used as a source for the
+    // "value" parameter, and it will convert digit only strings to
+    // numbers. The "value.toString()" call will prevent failure in
+    // this case, and whenever "value" is not a string.
+    //
+    value = value.toString().toLowerCase().trim();
+
+    return unorm.nfkd(value).replace(reg1, '').replace(reg2, '_');
 }
 
-function state0() {
+function reset_all() {
     $('#canvas').addClass('m-display-none');
     $('#landing').addClass('m-display-none');
     $('.e-canvas-edit').addClass('m-display-none');
+    $('.e-canvas-content').val('');
+    $('.e-canvas-comment').val('').addClass('m-display-none');
+    $('.e-add-comment').removeClass('display-none');
+    $('#canvas-name').text('');
+    $('#edit-canvas .e-canvas-name').val('');
 
-    reset_inputs();
+    // history.replaceState(null, null, window.location.pathname);
+}
+
+function state0(db) {
+    var canvas_id = window.location.search.slice(6).replace('/', '');
+
+    if (!canvas_id) {
+        state1(db);
+
+    } else {
+        state2(db, canvas_id);
+    }
 }
 
 function state1(db) {
-    state0();
+    reset_all();
 
-    db.child('canvases').once('value', function(snapshot) {
+    db.child('canvas').once('value', function(snapshot) {
         $('.b-project-list p').remove();
 
         for (var obj in snapshot.val()) {
@@ -180,76 +194,67 @@ function state1(db) {
     });
 }
 
-function state2(db, id) {
-    state0();
-
-    db.child('canvases').child(id).once('value', function(snapshot) {
-        var data = snapshot.val();
-
-        if (data) {
-            $('#canvas-ux').val(data.ux);
-            $('#canvas-foes').val(data.foes);
-            $('#canvas-risk').val(data.risk);
-            $('#canvas-costs').val(data.costs);
-            $('#canvas-field').val(data.field);
-            $('#canvas-causes').val(data.causes);
-            $('#canvas-events').val(data.events);
-            $('#canvas-changes').val(data.changes);
-            $('#canvas-metrics').val(data.metrics);
-            $('#canvas-problem').val(data.problem);
-            $('#canvas-adoption').val(data.adoption);
-            $('#canvas-approach').val(data.approach);
-            $('#canvas-evidence').val(data.evidence);
-            $('#canvas-impacted').val(data.impacted);
-            $('#canvas-mechanism').val(data.mechanism);
-            $('#canvas-partners').val(data.partners);
-            $('#canvas-resources').val(data.resources);
-            $('#canvas-activities').val(data.activities);
-            $('#canvas-supporters').val(data.supporters);
-            $('#canvas-proposition').val(data.proposition);
-
-            $('#canvas-ux-comments').val(data.ux_comments);
-            $('#canvas-foes-comments').val(data.foes_comments);
-            $('#canvas-risk-comments').val(data.risk_comments);
-            $('#canvas-costs-comments').val(data.costs_comments);
-            $('#canvas-field-comments').val(data.field_comments);
-            $('#canvas-causes-comments').val(data.causes_comments);
-            $('#canvas-events-comments').val(data.events_comments);
-            $('#canvas-changes-comments').val(data.changes_comments);
-            $('#canvas-metrics-comments').val(data.metrics_comments);
-            $('#canvas-problem-comments').val(data.problem_comments);
-            $('#canvas-adoption-comments').val(data.adoption_comments);
-            $('#canvas-approach-comments').val(data.approach_comments);
-            $('#canvas-evidence-comments').val(data.evidence_comments);
-            $('#canvas-impacted-comments').val(data.impacted_comments);
-            $('#canvas-mechanism-comments').val(data.mechanism_comments);
-            $('#canvas-partners-comments').val(data.partners_comments);
-            $('#canvas-resources-comments').val(data.resources_comments);
-            $('#canvas-activities-comments').val(data.activities_comments);
-            $('#canvas-supporters-comments').val(data.supporters_comments);
-            $('#canvas-proposition-comments').val(data.proposition_comments);
-
-            $('#canvas-name').text(id);
-            $('#edit-canvas .e-canvas-name').val(id);
-
-            $('.e-canvas-comment.m-display-none').each(function() {
-                if ($(this).val()) {
-                    $(this).removeClass('m-display-none');
-                    $(this).siblings('i').addClass('m-display-none');
-
-                } else {
-                    $(this).siblings('i').removeClass('m-display-none');
-                }
-            });
-
-            history.pushState(null, null, location.pathname + '?user=' + id);
-
-            $('#canvas').removeClass('m-display-none');
-
-        } else {
-            state1(db);
+function state2(db, id, object) {
+    function setup_canvas(obj) {
+        function set_data(item) {
+            $('#canvas-' + item).val(obj[item]);
+            $('#canvas-' + item + '-comments').val(obj[item + '_comments']);
         }
-    });
+
+        set_data('ux');
+        set_data('foes');
+        set_data('risk');
+        set_data('costs');
+        set_data('field');
+        set_data('causes');
+        set_data('events');
+        set_data('changes');
+        set_data('metrics');
+        set_data('problem');
+        set_data('adoption');
+        set_data('approach');
+        set_data('evidence');
+        set_data('impacted');
+        set_data('mechanism');
+        set_data('partners');
+        set_data('resources');
+        set_data('activities');
+        set_data('supporters');
+        set_data('proposition');
+
+        $('#canvas-name').text(obj.name);
+        $('#edit-canvas .e-canvas-name').val(obj.name);
+
+        $('.e-canvas-comment.m-display-none').each(function() {
+            if ($(this).val()) {
+                $(this).removeClass('m-display-none');
+                $(this).siblings('i').addClass('m-display-none');
+
+            } else {
+                $(this).siblings('i').removeClass('m-display-none');
+            }
+        });
+
+        history.pushState(null, null, location.pathname + '?user=' + id);
+
+        $('#canvas').removeClass('m-display-none');
+    }
+
+    reset_all();
+
+    if (object) {
+        setup_canvas(object);
+
+    } else {
+        db.child('canvas').child(id).once('value', function(snapshot) {
+            if (snapshot.val()) {
+                setup_canvas(snapshot.val());
+
+            } else {
+                state1(db);
+            }
+        });
+    }
 }
 
 function notify(type, text) {
