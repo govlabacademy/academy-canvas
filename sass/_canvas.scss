@@ -10,10 +10,16 @@
   width: 100%;
   padding: 9px 0 0;
   z-index: -1;
+  text-transform: uppercase;
   @include transition;
 
   &.m-visible {
     top: 58px;
+  }
+
+  &.error {
+    background-color: $red;
+    color: white;
   }
 
   p {
@@ -89,9 +95,7 @@
 
     &:hover .e-add-comment { color: $gray_40; }
 
-    &.m-commented .e-add-comment { display: none; }
-
-    .e-canvas-textarea {
+    .e-canvas-content {
       // width: 100%;
       padding: 10px 15px;
       resize: none;
@@ -133,7 +137,7 @@
         }
       }
 
-      
+
     }
   }
 }

@@ -26,10 +26,7 @@
           <ul class="b-main-nav">
             <span class="e-mainnav-trigger"><i class="fa-bars fa"></i></span>
             <h2>Menu</h2>
-            <li><a href="#" class="left-off-canvas-toggle">List</a></li>
-            <li class="e-canvas-edit display-none"><span data-reveal-id="edit-canvas">Edit</span></li>
-            <li class="e-canvas-login display-none"><span>Login</span></li>
-            <li class="e-canvas-logout display-none"><span>Logout</span></li>
+            <!-- <li class="e-canvas-edit m-display-none"><span data-reveal-id="edit-canvas">Edit</span></li> -->
             <!-- <li><a class="m-disabled" href="#">Library</a></li> -->
           </ul>
         </nav>
@@ -40,237 +37,231 @@
       </div>
     </header>
 
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
-        <aside class="b-offcanvas left-off-canvas-menu"></aside>
+    <main class="b-main-content">
+      <section id="landing" class="m-display-none">
+        <div class="row">
+          <div class="column large-9 large-centered">
+            <div class="b-panel b-project-list m-display-none">
+              <h3>Select a Canvas</h3>
+              <!-- <p class="e-project-list-item"><a href="#">Project 1</a></p> -->
+            </div>
+          </div>
+        </div>
 
-        <section id="login" class="b-main-content display-none">
+        <div class="row">
+          <div class="column large-9 large-centered">
+            <div class="b-panel b-create-canvas">
+              <h3>Create a Canvas</h3>
+              <input type="text" placeholder="canvas name"><span class="e-button">Create</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="canvas" class="m-display-none">
+        <section class="b-content-section b-canvas-title">
           <div class="row">
-            <div class="column large-9 large-centered">
-              <div class="b-panel">
-                <h3>Login</h3>
-                <img class="e-login-button google-login" src="static/img/sign-in-with-google.png" alt="Sign-in with Google"/>
-                <img class="e-login-button twitter-login" src="static/img/twitter.png" alt="Sign-in with Twitter"/>
-              </div>
+            <div class="column large-12">
+              <h1 id="canvas-name">Canvas</h1>
             </div>
           </div>
         </section>
 
-        <section id="landing" class="b-main-content "> <!-- display-none -->
-          <div class="row">
-            <div class="column large-9 large-centered">
-              <div class="b-panel b-project-list">
-                <h3>Select a Canvas</h3>
-                <p class="e-project-list-item"><a href="#">Project 1</a></p>
-                <p class="e-project-list-item"><a href="#">Project 2</a></p>
-                <p class="e-project-list-item"><a href="#">Project 3</a></p>
-                <p class="e-project-list-item"><a href="#">Project 4</a></p>
-                <p class="e-project-list-item"><a href="#">Project 5</a></p>
-                <p class="e-project-list-item"><a href="#">Project 6</a></p>
+        <section class="b-content-section b-canvas">
+          <div class="e-canvas-line">
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>The problem I am tackling is…</h3>
+                <h4>What is the need?</h4>
+                <textarea id="canvas-problem" class="e-canvas-content" name="problem"></textarea>
+                <textarea id="canvas-problem-comments" class="e-canvas-comment m-display-none" name="problem_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>The people most impacted by this problem are…</h3>
+                <h4>Who is harmed?</h4>
+                <textarea id="canvas-impacted" class="e-canvas-content" name="impacted"></textarea>
+                <textarea id="canvas-impacted-comments" class="e-canvas-comment m-display-none" name="impacted_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>I believe the major causes of this problem are…</h3>
+                <h4>What are the causes?</h4>
+                <textarea id="canvas-causes" class="e-canvas-content" name="causes"></textarea>
+                <textarea id="canvas-causes-comments" class="e-canvas-comment m-display-none" name="causes_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>I believe this because…</h3>
+                <h4>What is the evidence? Also who can you interview? What can you find out? What experiment can you run?</h4>
+                <textarea id="canvas-evidence" class="e-canvas-content" name="evidence"></textarea>
+                <textarea id="canvas-evicence-comments" class="e-canvas-comment m-display-none" name="evicence_comments" placeholder="comments"></textarea>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="column large-9 large-centered">
-              <div class="b-panel">
-                <input type="text"><span class="e-button">Create New Canvas</span>
+
+          <div class="e-canvas-line">
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>The problem can be improved by…</h3>
+                <h4>What is The Big Idea? What is the value proposition?</h4>
+                <textarea id="canvas-proposition" class="e-canvas-content" name="proposition"></textarea>
+                <textarea id="canvas-proposition-comments" class="e-canvas-comment m-display-none" name="proposition_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>This approach will have an impact because...</h3>
+                <h4>What is the mechanism of beneficial change?</h4>
+                <textarea id="canvas-mechanism" class="e-canvas-content" name="mechanism"></textarea>
+                <textarea id="canvas-mechanism-comments" class="e-canvas-comment m-display-none" name="mechanism_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>The impact will be measurable because…</h3>
+                <h4>Key metrics?</h4>
+                <textarea id="canvas-metrics" class="e-canvas-content" name="metrics"></textarea>
+                <textarea id="canvas-metrics-comments" class="e-canvas-comment m-display-none" name="metrics_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>Those with the greatest interest in change are…</h3>
+                <h4>Key supporters? Segments?</h4>
+                <textarea id="canvas-supporters" class="e-canvas-content" name="supporters"></textarea>
+                <textarea id="canvas-supporters-comments" class="e-canvas-comment m-display-none" name="supporters_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>Those most opposed to change are…</h3>
+                <h4>Key foes?</h4>
+                <textarea id="canvas-foes" class="e-canvas-content" name="foes"></textarea>
+                <textarea id="canvas-foes-comments" class="e-canvas-comment m-display-none" name="foes_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="e-canvas-line">
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>The way it will work is…</h3>
+                <h4>What is the user experience?</h4>
+                <textarea id="canvas-ux" class="e-canvas-content" name="ux"></textarea>
+                <textarea id="canvas-ux-comments" class="e-canvas-comment m-display-none" name="ux_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>To make this happen, these changes need to occur…</h3>
+                <h4>Who Has to Do What To Make It Happen?</h4>
+                <textarea id="canvas-changes" class="e-canvas-content" name="changes"></textarea>
+                <textarea id="canvas-changes-comments" class="e-canvas-comment m-display-none" name="changes_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>To undertake my big idea, I could work with…</h3>
+                <h4>Key partners to execute? Key partners to help others evaluate your value proposition?</h4>
+                <textarea id="canvas-partners" class="e-canvas-content" name="partners"></textarea>
+                <textarea id="canvas-partners-comments" class="e-canvas-comment m-display-none" name="partners_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>The reason to do this now is…</h3>
+                <h4>What are the precipitating events?</h4>
+                <textarea id="canvas-events" class="e-canvas-content" name="events"></textarea>
+                <textarea id="canvas-events-comments" class="e-canvas-comment m-display-none" name="events_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>Others working in this space include…</h3>
+                <h4>Who else is in the field?</h4>
+                <textarea id="canvas-field" class="e-canvas-content" name="field"></textarea>
+                <textarea id="canvas-field-comments" class="e-canvas-comment m-display-none" name="field_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>My approach is better because…</h3>
+                <h4>What's wrong? Missing? Not working?</h4>
+                <textarea id="canvas-approach" class="e-canvas-content" name="approach"></textarea>
+                <textarea id="canvas-approach-comments" class="e-canvas-comment m-display-none" name="approach_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="e-canvas-line">
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>Key resources (besides financial ones) I will need to be successful…</h3>
+                <h4>Physical, human and intellectual resources?</h4>
+                <textarea id="canvas-resources" class="e-canvas-content" name="resources"></textarea>
+                <textarea id="canvas-resources-comments" class="e-canvas-comment m-display-none" name="resources_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>My strategy for rolling out this project involves the following key activities...</h3>
+                <h4>Next steps? Pilots?</h4>
+                <textarea id="canvas-activities" class="e-canvas-content" name="activities"></textarea>
+                <textarea id="canvas-activities-comments" class="e-canvas-comment m-display-none" name="activities_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>I will raise awareness about my project by…</h3>
+                <h4>How will I promote adoption?</h4>
+                <textarea id="canvas-adoption" class="e-canvas-content" name="adoption"></textarea>
+                <textarea id="canvas-adoption-comments" class="e-canvas-comment m-display-none" name="adoption_comments" placeholder="comments"></textarea>
+              </div>
+            </div>
+
+            <div class="e-canvas-col">
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>I will sustain this project by…</h3>
+                <h4>Cost Structure? Financial Sustainability? Revenue Streams?</h4>
+                <textarea id="canvas-costs" class="e-canvas-content" name="costs"></textarea>
+                <textarea id="canvas-costs-comments" class="e-canvas-comment m-display-none" name="costs_comments" placeholder="comments"></textarea>
+              </div>
+
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>My biggest risk is…</h3>
+                <h4>How might this go wrong? How might the problem evolve? What are the legal, cultural and other impediments?</h4>
+                <textarea id="canvas-risk" class="e-canvas-content" name="risk"></textarea>
+                <textarea id="canvas-risk-comments" class="e-canvas-comment m-display-none" name="risk_comments" placeholder="comments"></textarea>
               </div>
             </div>
           </div>
         </section>
-
-        <section id="canvas" class="b-main-content off-canvas-wrap display-none">
-          <section class="b-content-section b-canvas-title">
-            <div class="row">
-              <div class="column large-12">
-                <h1 id="canvas-name">Canvas</h1>
-              </div>
-            </div>
-          </section>
-
-          <section class="b-content-section b-canvas">
-            <div class="e-canvas-line">
-              <div class="e-canvas-col">
-                <div class="e-canvas-section m-commented">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>The problem I am tackling is…</h3>
-                  <h4>What is the need?</h4>
-                  <textarea id="canvas-problem" class="e-canvas-content e-canvas-textarea" disabled="disabled"></textarea>
-                  <textarea class="e-canvas-comment" placeholder="This is an already posted comment"> </textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>The people most impacted by this problem are…</h3>
-                  <h4>Who is harmed?</h4>
-                  <textarea id="canvas-idea" class="e-canvas-textarea" disabled="disabled"></textarea>
-                  
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>I believe the major causes of this problem are…</h3>
-                  <h4>What are the causes?</h4>
-                    <textarea id="canvas-theory" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>I believe this because…</h3>
-                  <h4>What is the evidence? Also who can you interview? What can you find out? What experiment can you run?</h4>
-                    <textarea id="canvas-solution" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="e-canvas-line">
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>The problem can be improved by…</h3>
-                  <h4>What is The Big Idea? What is the value proposition?</h4>
-                    <textarea id="canvas-channels" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>This approach will have an impact because...</h3>
-                  <h4>What is the mechanism of beneficial change?</h4>
-                    <textarea id="canvas-metrics" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>The impact will be measurable because…</h3>
-                  <h4>Key metrics?</h4>
-                    <textarea id="canvas-users" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>Those with the greatest interest in change are…</h3>
-                  <h4>Key supporters? Segments?</h4>
-                    <textarea id="canvas-champions" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>Those most opposed to change are…</h3>
-                  <h4>Key foes?</h4>
-                    <textarea id="canvas-costs" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="e-canvas-line">
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>The way it will work is…</h3>
-                  <h4>What is the user experience?</h4>
-                    <textarea id="canvas-partners" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>To make this happen, these changes need to occur…</h3>
-                  <h4>Who Has to Do What To Make It Happen?</h4>
-                    <textarea id="canvas-impact" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>To undertake my big idea, I could work with…</h3>
-                  <h4>Key partners to execute? Key partners to help others evaluate your value proposition?</h4>
-                    <textarea id="canvas-competitors" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>The reason to do this now is…</h3>
-                  <h4>What are the precipitating events?</h4>
-                    <textarea id="canvas-sustainability" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>Others working in this space include…</h3>
-                  <h4>Who else is in the field?</h4>
-                    <textarea id="canvas-opponents" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>My approach is better because…</h3>
-                  <h4>What's wrong? Missing? Not working?</h4>
-                    <textarea id="canvas-risks" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="e-canvas-line">
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>Key resources (besides financial ones) I will need to be successful…</h3>
-                  <h4>Physical, human and intellectual resources?</h4>
-                    <textarea id="canvas-channels" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>My strategy for rolling out this project involves the following key activities...</h3>
-                  <h4>Next steps? Pilots?</h4>
-                    <textarea id="canvas-metrics" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>I will raise awareness about my project by…</h3>
-                  <h4>How will I promote adoption?</h4>
-                    <textarea id="canvas-users" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              <div class="e-canvas-col">
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>I will sustain this project by…</h3>
-                  <h4>Cost Structure? Financial Sustainability? Revenue Streams?</h4>
-                    <textarea id="canvas-champions" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-
-                <div class="e-canvas-section">
-                  <i class="fa fa-comment e-add-comment"></i>
-                  <h3>My biggest risk is…</h3>
-                  <h4>How might this go wrong? How might the problem evolve? What are the legal, cultural and other impediments?</h4>
-                    <textarea id="canvas-costs" class="e-canvas-textarea" disabled="disabled"></textarea>
-                </div>
-              </div>
-
-              
-
-              </div>
-            </div>
-          </section>
-        </section>
-
-        <a class="exit-off-canvas"></a>
-      </div>
-    </div>
+      </section>
+    </main>
 
     <footer class="b-footer" >
       <div class="row">
