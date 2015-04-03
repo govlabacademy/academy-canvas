@@ -105,22 +105,20 @@ p,
 .b-logo {
   display: block;
   background-color: #472b74;
-  padding: 2px 0 0 0;
+  padding: 2px 0 4px;
   margin: 0;
   font-size: 24px;
-  font-weight: 100; }
-  .b-logo a {
+  font-weight: 100;
+  color: white; }
+  .b-logo:hover {
+    background-color: transparent;
     color: white; }
-    .b-logo a:hover {
-      background-color: transparent; }
-  .b-logo .e-home span {
-    display: inline-block;
-    margin-top: 4px; }
   .b-logo img {
     width: 110px;
-    margin-right: 10px; }
+    margin-right: 10px;
+    vertical-align: middle; }
   .b-logo span {
-    vertical-align: -3px; }
+    vertical-align: middle; }
 
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1024px) {
@@ -136,88 +134,10 @@ p,
     max-width: 30%;
     margin-top: 5px; }
     .b-logo img {
-      width: 140px; }
-    .b-logo:hover {
-      background-color: transparent; }
-
-  .b-main-nav-container {
-    float: right; }
-
-  .b-main-nav {
-    margin: 0;
-    position: relative; }
-    .b-main-nav li {
-      margin: 0;
-      padding: 0; }
-    .b-main-nav > li {
-      float: left; }
-      .b-main-nav > li a, .b-main-nav > li span {
-        padding: 16px;
-        display: inline-block; }
-      .b-main-nav > li span {
-        cursor: pointer; }
-    .b-main-nav > li:last-of-type a, .b-main-nav > li:last-of-type span {
-      border-right: 0; }
-    .b-main-nav .e-submenu ul {
-      z-index: -10; }
-    .b-main-nav a, .b-main-nav span {
-      color: white;
-      font-size: 1.1rem;
-      padding: 3px 12px;
-      white-space: nowrap;
-      border-right: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.4s ease; }
-      .b-main-nav a:hover, .b-main-nav span:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-        transition: all 0.4s ease; }
-      .b-main-nav a.m-disabled, .b-main-nav span.m-disabled {
-        opacity: .4;
-        pointer-events: none; }
-
-  .b-main-nav h2 {
-    display: none; }
-
-  .e-submenu {
-    position: relative; }
-    .e-submenu:after {
-      content: "";
-      width: 0;
-      height: 0;
-      border-top: 6px solid rgba(255, 255, 255, 0.15);
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      position: absolute;
-      right: calc(50% - 10px);
-      top: 40px;
-      pointer-events: none; }
-    .e-submenu:hover:after {
-      border-top-color: rgba(255, 255, 255, 0.3); }
-    .e-submenu ul {
-      display: block;
-      position: absolute;
-      z-index: -1;
-      top: -100px;
-      margin: 0;
-      left: 0;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-      transition: all 0.4s ease; }
-      .e-submenu ul li:first-of-type a, .e-submenu ul li:first-of-type span {
-        padding-top: 6px; }
-      .e-submenu ul .e-sub-item {
-        display: block;
-        border: 0;
-        color: rgba(255, 255, 255, 0.7);
-        background-color: #6f5d8b;
-        border: 1px solid rgba(0, 0, 0, 0.8);
-        border-top: 0;
-        padding: 3px 18px; }
-        .e-submenu ul .e-sub-item:hover {
-          background-color: #201334;
-          color: white; }
-
-  .e-submenu:hover ul {
-    transition: all 0.4s ease;
-    top: 58px; } }
+      width: 140px;
+      vertical-align: text-bottom; }
+    .b-logo span {
+      vertical-align: text-bottom; } }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (max-width: 1024px) {
   .e-mainnav-trigger {
@@ -682,6 +602,8 @@ p,
   padding: 3px 10px 4px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 5px; }
+  .b-project-list .e-project-list-item span {
+    cursor: pointer; }
 
 .b-canvas-title {
   margin-top: 60px;

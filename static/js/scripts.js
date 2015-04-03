@@ -1,26 +1,13 @@
 $(document).ready(function() {
     var db = new Firebase('https://lean-canvas.firebaseio.com/');
 
-    $(document).foundation();
-
     state0(db);
+
+    $(document).foundation();
 
     window.onpopstate = function(event) { state0(db); };
 
-    $('.e-mainnav-trigger').click(function() {
-        var $trigger = $(this);
-
-        if ($trigger.hasClass('m-nav-active')) {
-            $trigger.removeClass('m-nav-active');
-            $trigger.parent().parent().parent().removeClass('m-nav-active');
-
-        } else {
-            $trigger.addClass('m-nav-active');
-            $trigger.parent().parent().parent().addClass('m-nav-active');
-        }
-    });
-
-    $('.b-project-list').on('click', '.e-project-list-item a', function() {
+    $('.b-project-list').on('click', '.e-project-list-item span', function() {
         state2(db, slugy($(this).text()));
 
         return false;
@@ -138,6 +125,16 @@ $(document).ready(function() {
     // });
 });
 
+function notify(type, text) {
+    $('.b-system-message').text(text);
+    $('.b-system-message').addClass('m-visible ' + type);
+
+    setTimeout(function() {
+        $('.b-system-message').removeClass('m-visible ' + type);
+
+    }, 2000);
+}
+
 function slugy(value) {
     var reg1 = /[\u0300-\u036F]/g; // Use XRegExp('\\p{M}', 'g');
     var reg2 = /\s+/g;
@@ -183,10 +180,10 @@ function state1(db) {
         $('.b-project-list p').remove();
 
         for (var obj in snapshot.val()) {
-            var $a = $('<a/>').attr('href', '#').text(obj),
+            var $span = $('<span/>').attr('href', '#').text(obj),
                 $p = $('<p/>').addClass('e-project-list-item');
 
-            $('.b-project-list').append($p.append($a));
+            $('.b-project-list').append($p.append($span));
             $('.b-project-list').removeClass('m-display-none');
         }
 
@@ -255,14 +252,4 @@ function state2(db, id, object) {
             }
         });
     }
-}
-
-function notify(type, text) {
-    $('.b-system-message').text(text);
-    $('.b-system-message').addClass('m-visible ' + type);
-
-    setTimeout(function() {
-        $('.b-system-message').removeClass('m-visible ' + type);
-
-    }, 2000);
 }

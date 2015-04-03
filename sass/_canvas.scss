@@ -37,6 +37,10 @@
     padding: 3px 10px 4px;
     border-bottom: 1px solid $gray_10;
     margin-bottom: 5px;
+
+    span {
+      cursor: pointer;
+    }
   }
 }
 

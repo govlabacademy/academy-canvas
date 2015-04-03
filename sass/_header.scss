@@ -21,33 +21,25 @@
 .b-logo {
     display: block;
     background-color: $purple;
-    padding: 2px 0 0 0;
+    padding: 2px 0 4px;
     margin: 0;
     font-size: 24px;
     font-weight: 100;
+    color: $white;
 
-    a {
+    &:hover {
+        background-color: transparent;
         color: $white;
-
-        &:hover {
-            background-color: transparent;
-        }
-    }
-
-    .e-home {
-        span {
-            display: inline-block;
-            margin-top: 4px;
-        }
     }
 
     img {
         width: 110px;
         margin-right: 10px;
+        vertical-align: middle;
     }
 
     span {
-        vertical-align: -3px;
+        vertical-align: middle;
     }
 }
 
@@ -72,133 +64,11 @@
 
     img {
         width: 140px;
+        vertical-align: text-bottom;
     }
 
-    &:hover {
-        background-color: transparent;
-    }
-}
-
-.b-main-nav-container {
-    float: right;
-}
-
-.b-main-nav {
-    margin: 0;
-    position: relative;
-
-    li {
-        margin: 0;
-        padding: 0;
-
-    }
-
-    > li {
-        float: left;
-        // padding-bottom: 14px;
-
-        a, span {
-            padding: 16px;
-            display: inline-block;
-        }
-
-        span {
-            cursor: pointer;
-        }
-    }
-
-    > li:last-of-type a, > li:last-of-type span {
-        border-right: 0;
-    }
-
-    .e-submenu {
-        ul {
-            // display: none;
-            z-index: -10;
-        }
-    }
-
-    a, span {
-        color: $white;
-        font-size: 1.1rem;
-        padding: 3px 12px;
-        white-space: nowrap;
-        border-right: 1px solid $white_15;
-        @include transition;
-
-        &:hover {
-            background-color: $white_30;
-            @include transition;
-        }
-
-        &.m-disabled {
-            opacity: .4;
-            pointer-events: none;
-        }
+    span {
+        vertical-align: text-bottom;
     }
 }
-
-.b-main-nav h2 { display: none; }
-
-// Dropdown menu
-
-.e-submenu {
-    position: relative;
-
-    &:after {
-        content: "";
-        width: 0;
-        height: 0;
-        border-top: 6px solid $white_15;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        position: absolute;
-        right: calc(50% - 10px);
-        top: 40px;
-        pointer-events: none;
-    }
-
-    &:hover:after {
-        border-top-color: $white_30;
-    }
-
-    ul {
-        display: block;
-        position: absolute;
-        z-index: -1;
-        top: -100px;
-        margin: 0;
-        left: 0;
-        @include drop-shadow-light;
-        @include transition;
-
-        li:first-of-type a, li:first-of-type span {
-            padding-top: 6px;
-        }
-
-        .e-sub-item {
-            display: block;
-            border: 0;
-            color: $white_70;
-            background-color: $govlab-purple_3;
-            border: 1px solid $gray_80;
-            border-top: 0;
-            padding: 3px 18px;
-
-            &:hover {
-                background-color: $govlab-purple_4;
-                color: $white;
-            }
-        }
-    }
-}
-
-.e-submenu:hover {
-// .e-submenu {
-    ul {
-        @include transition;
-        top: 58px;
-    }
-}
-
 }
