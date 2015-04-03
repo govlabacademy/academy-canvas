@@ -616,6 +616,8 @@ p,
 
 .b-canvas {
   margin: 30px 20px 60px; }
+  .b-canvas .e-group-title {
+    margin-top: 40px; }
   .b-canvas .e-canvas-section {
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -627,10 +629,11 @@ p,
     flex-flow: column;
     padding: 20px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    min-height: 200px; }
+    min-height: 400px; }
     .b-canvas .e-canvas-section h3 {
-      font-size: 1.2rem;
-      color: #472b74; }
+      font-size: 1rem;
+      color: #472b74;
+      margin-right: 25px; }
     .b-canvas .e-canvas-section h4 {
       font-size: 14px;
       font-style: italic;

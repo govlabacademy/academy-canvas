@@ -61,6 +61,7 @@
         </section>
 
         <section class="b-content-section b-canvas">
+          <h2 class="e-group-title">Understand</h2>
           <div class="e-canvas-line">
             <div class="e-canvas-col">
               <div class="e-canvas-section">
@@ -75,12 +76,14 @@
             <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
-                <h3>The people most impacted by this problem are…</h3>
+                <h3 style="letter-spacing: -0.1px;">The people most impacted by this problem are…</h3>
                 <h4>Who is harmed?</h4>
                 <textarea id="canvas-impacted" class="e-canvas-content" name="impacted"></textarea>
                 <textarea id="canvas-impacted-comments" class="e-canvas-comment m-display-none" name="impacted_comments" placeholder="comments"></textarea>
               </div>
+            </div>
 
+            <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>I believe the major causes of this problem are…</h3>
@@ -89,7 +92,11 @@
                 <textarea id="canvas-causes-comments" class="e-canvas-comment m-display-none" name="causes_comments" placeholder="comments"></textarea>
               </div>
             </div>
+            
+          </div>
 
+          <h2 class="e-group-title">Observe</h2>
+          <div class="e-canvas-line">
             <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
@@ -101,6 +108,7 @@
             </div>
           </div>
 
+          <h2 class="e-group-title">Point of View</h2>
           <div class="e-canvas-line">
             <div class="e-canvas-col">
               <div class="e-canvas-section">
@@ -129,7 +137,6 @@
                 <textarea id="canvas-metrics-comments" class="e-canvas-comment m-display-none" name="metrics_comments" placeholder="comments"></textarea>
               </div>
             </div>
-
             <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
@@ -149,6 +156,7 @@
             </div>
           </div>
 
+          <h2 class="e-group-title">Ideate</h2>
           <div class="e-canvas-line">
             <div class="e-canvas-col">
               <div class="e-canvas-section">
@@ -185,7 +193,9 @@
                 <textarea id="canvas-events-comments" class="e-canvas-comment m-display-none" name="events_comments" placeholder="comments"></textarea>
               </div>
             </div>
+          </div>
 
+          <div class="e-canvas-line">
             <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
@@ -194,7 +204,8 @@
                 <textarea id="canvas-field" class="e-canvas-content" name="field"></textarea>
                 <textarea id="canvas-field-comments" class="e-canvas-comment m-display-none" name="field_comments" placeholder="comments"></textarea>
               </div>
-
+            </div>
+            <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>My approach is better because…</h3>
@@ -203,9 +214,6 @@
                 <textarea id="canvas-approach-comments" class="e-canvas-comment m-display-none" name="approach_comments" placeholder="comments"></textarea>
               </div>
             </div>
-          </div>
-
-          <div class="e-canvas-line">
             <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
@@ -214,7 +222,13 @@
                 <textarea id="canvas-resources" class="e-canvas-content" name="resources"></textarea>
                 <textarea id="canvas-resources-comments" class="e-canvas-comment m-display-none" name="resources_comments" placeholder="comments"></textarea>
               </div>
+            </div>
+          </div>
 
+
+          <h2 class="e-group-title">Prototype and Test</h2>
+          <div class="e-canvas-line">
+            <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>My strategy for rolling out this project involves the following key activities...</h3>
@@ -222,19 +236,6 @@
                 <textarea id="canvas-activities" class="e-canvas-content" name="activities"></textarea>
                 <textarea id="canvas-activities-comments" class="e-canvas-comment m-display-none" name="activities_comments" placeholder="comments"></textarea>
               </div>
-            </div>
-
-            <div class="e-canvas-col">
-              <div class="e-canvas-section">
-                <i class="fa fa-comment e-add-comment"></i>
-                <h3>I will raise awareness about my project by…</h3>
-                <h4>How will I promote adoption?</h4>
-                <textarea id="canvas-adoption" class="e-canvas-content" name="adoption"></textarea>
-                <textarea id="canvas-adoption-comments" class="e-canvas-comment m-display-none" name="adoption_comments" placeholder="comments"></textarea>
-              </div>
-            </div>
-
-            <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>I will sustain this project by…</h3>
@@ -242,13 +243,21 @@
                 <textarea id="canvas-costs" class="e-canvas-content" name="costs"></textarea>
                 <textarea id="canvas-costs-comments" class="e-canvas-comment m-display-none" name="costs_comments" placeholder="comments"></textarea>
               </div>
-
+            </div>
+            <div class="e-canvas-col">
               <div class="e-canvas-section">
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>My biggest risk is…</h3>
                 <h4>How might this go wrong? How might the problem evolve? What are the legal, cultural and other impediments?</h4>
                 <textarea id="canvas-risk" class="e-canvas-content" name="risk"></textarea>
                 <textarea id="canvas-risk-comments" class="e-canvas-comment m-display-none" name="risk_comments" placeholder="comments"></textarea>
+              </div>
+              <div class="e-canvas-section">
+                <i class="fa fa-comment e-add-comment"></i>
+                <h3>I will raise awareness about my project by…</h3>
+                <h4>How will I promote adoption?</h4>
+                <textarea id="canvas-adoption" class="e-canvas-content" name="adoption"></textarea>
+                <textarea id="canvas-adoption-comments" class="e-canvas-comment m-display-none" name="adoption_comments" placeholder="comments"></textarea>
               </div>
             </div>
           </div>
