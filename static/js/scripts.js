@@ -96,6 +96,11 @@ $(document).ready(function() {
 
             notify('success', 'Canvas saved');
         }
+
+        if (!$(this).val()) {
+            $(this).addClass('m-display-none');
+            $(this).siblings('.e-add-comment').removeClass('m-display-none');
+        }
     });
 
     // $('#edit-canvas .e-button').click(function() {
