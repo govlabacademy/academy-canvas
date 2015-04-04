@@ -614,6 +614,8 @@ p,
     padding-left: 15px; }
   .b-instructions p {
     padding: 15px; }
+    .b-instructions p a {
+      text-decoration: underline; }
 
 .b-canvas-title {
   margin-top: 60px;
