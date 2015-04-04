@@ -529,7 +529,10 @@ p,
   .fr_after_submit_page p {
     font-size: 3rem; } }
 #landing {
-  padding-top: 150px; }
+  padding-top: 40px;
+  padding-bottom: 30px; }
+  #landing p a {
+    text-decoration: underline; }
 
 #login {
   padding-top: 150px; }
@@ -604,6 +607,13 @@ p,
   margin-bottom: 5px; }
   .b-project-list .e-project-list-item span {
     cursor: pointer; }
+
+.b-instructions {
+  padding: 30px 0; }
+  .b-instructions h3 {
+    padding-left: 15px; }
+  .b-instructions p {
+    padding: 15px; }
 
 .b-canvas-title {
   margin-top: 60px;
