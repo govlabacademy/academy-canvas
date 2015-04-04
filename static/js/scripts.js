@@ -97,7 +97,7 @@ $(document).ready(function() {
             notify('success', 'Canvas saved');
         }
 
-        if (!$(this).val()) {
+        if ($(this).hasClass('e-canvas-comment') && !$(this).val()) {
             $(this).addClass('m-display-none');
             $(this).siblings('.e-add-comment').removeClass('m-display-none');
         }
