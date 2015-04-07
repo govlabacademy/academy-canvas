@@ -542,6 +542,10 @@ p,
     width: 300px;
     cursor: pointer; }
 
+.b-create-canvas p {
+  font-size: 1rem;
+  margin-bottom: 25px; }
+
 .b-panel {
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);

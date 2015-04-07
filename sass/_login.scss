@@ -20,6 +20,13 @@
 	}
 }
 
+.b-create-canvas {
+  p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+}
+
 .b-panel {
   position: relative;
   border: 1px solid $gray_20;
@@ -29,7 +36,6 @@
   flex: 1;
   padding: 20px;
   @include drop-shadow-light;
-
 
   h3 {
     margin-bottom: 30px;
