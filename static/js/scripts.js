@@ -48,6 +48,27 @@ $(document).ready(function() {
                 doc.supporters = '';
                 doc.proposition = '';
 
+                doc.ux_timestamp = '';
+                doc.foes_timestamp = '';
+                doc.risk_timestamp = '';
+                doc.costs_timestamp = '';
+                doc.field_timestamp = '';
+                doc.causes_timestamp = '';
+                doc.events_timestamp = '';
+                doc.changes_timestamp = '';
+                doc.metrics_timestamp = '';
+                doc.problem_timestamp = '';
+                doc.adoption_timestamp = '';
+                doc.approach_timestamp = '';
+                doc.evidence_timestamp = '';
+                doc.impacted_timestamp = '';
+                doc.mechanism_timestamp = '';
+                doc.partners_timestamp = '';
+                doc.resources_timestamp = '';
+                doc.activities_timestamp = '';
+                doc.supporters_timestamp = '';
+                doc.proposition_timestamp = '';
+
                 doc.ux_comments = '';
                 doc.foes_comments = '';
                 doc.risk_comments = '';
@@ -68,6 +89,27 @@ $(document).ready(function() {
                 doc.activities_comments = '';
                 doc.supporters_comments = '';
                 doc.proposition_comments = '';
+
+                doc.ux_comments_timestamp = '';
+                doc.foes_comments_timestamp = '';
+                doc.risk_comments_timestamp = '';
+                doc.costs_comments_timestamp = '';
+                doc.field_comments_timestamp = '';
+                doc.causes_comments_timestamp = '';
+                doc.events_comments_timestamp = '';
+                doc.changes_comments_timestamp = '';
+                doc.metrics_comments_timestamp = '';
+                doc.problem_comments_timestamp = '';
+                doc.adoption_comments_timestamp = '';
+                doc.approach_comments_timestamp = '';
+                doc.evidence_comments_timestamp = '';
+                doc.impacted_comments_timestamp = '';
+                doc.mechanism_comments_timestamp = '';
+                doc.partners_comments_timestamp = '';
+                doc.resources_comments_timestamp = '';
+                doc.activities_comments_timestamp = '';
+                doc.supporters_comments_timestamp = '';
+                doc.proposition_comments_timestamp = '';
 
                 db.child('canvas').child(id).set(doc);
 
@@ -91,6 +133,7 @@ $(document).ready(function() {
                 doc = {};
 
             doc[$(this).attr('name')] = $(this).val();
+            doc[$(this).attr('name') + '_timestamp'] = new Date();
 
             db.child('canvas').child(id).update(doc);
 
@@ -157,11 +200,14 @@ function slugy(value) {
 function reset_all() {
     $('#canvas').addClass('m-display-none');
     $('#landing').addClass('m-display-none');
+    $('#canvas-name').text('');
     $('.e-canvas-edit').addClass('m-display-none');
+    $('.e-add-comment').removeClass('display-none');
     $('.e-canvas-content').val('');
     $('.e-canvas-comment').val('').addClass('m-display-none');
-    $('.e-add-comment').removeClass('display-none');
-    $('#canvas-name').text('');
+    $('.e-canvas-timestamp').addClass('m-display-none');
+    $('.e-canvas-timestamp .e-action').text('');
+    $('.e-canvas-timestamp .e-timeago').text('').attr('title', '');
     $('#edit-canvas .e-canvas-name').val('');
 
     // history.replaceState(null, null, window.location.pathname);
@@ -199,8 +245,26 @@ function state1(db) {
 function state2(db, id, object) {
     function setup_canvas(obj) {
         function set_data(item) {
+            var t01 = obj[item + '_timestamp'],
+                t02 = obj[item + '_comments_timestamp'],
+                t03 = t01 > t02 ? t01 : t02,
+                txt = '';
+
+
+            if (t01  && !t02) {
+                txt = 'Edited ';
+
+            } else if (!t01 && t02) {
+                txt = 'Commented ';
+
+            } else if (t01 && t02) {
+                txt = t01 > t02 ? 'Edited ' : 'Commented ';
+            }
+
             $('#canvas-' + item).val(obj[item]);
             $('#canvas-' + item + '-comments').val(obj[item + '_comments']);
+            $('#canvas-' + item + '-timestamp .e-action').text(txt);
+            $('#canvas-' + item + '-timestamp .e-timeago').attr('title', t03);
         }
 
         set_data('ux');
@@ -237,8 +301,15 @@ function state2(db, id, object) {
             }
         });
 
+        $('.e-canvas-timestamp.m-display-none').each(function() {
+            if ($(this).children('.e-action').text().length) {
+                $(this).removeClass('m-display-none');
+            }
+        });
+
         history.pushState(null, null, location.pathname + '?user=' + id);
 
+        $('.e-canvas-timestamp .e-timeago').timeago();
         $('#canvas').removeClass('m-display-none');
     }
 
