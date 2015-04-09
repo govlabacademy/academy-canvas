@@ -45,7 +45,9 @@
           <div class="column large-9 large-centered">
             <div class="b-panel b-create-canvas">
               <h3>Create a Canvas</h3>
-              <input type="text" placeholder="canvas name"><span class="e-button">Create</span>
+              <input type="text" placeholder="Name">
+              <input type="password" placeholder="Password (optional)">
+              <input type="password" placeholder="Confirm password (optional)"><span class="e-button">Create</span>
             </div>
           </div>
         </div>
@@ -326,6 +328,16 @@
           <input class="e-canvas-name" type="text" name="canvas_name" required placeholder="Canvas Name">
 
           <div><span class="e-button">Save</span></div>
+      </div>
+    </div>
+
+    <div id="unlock-canvas" class="b-unlock-canvas reveal-modal row" data-reveal>
+      <div class="column large-9 large-centered">
+          <h3>Password</h3>
+
+          <input type="password" required placeholder="Password">
+
+          <div><span class="e-button">Submit</span></div>
       </div>
     </div>
   </body>

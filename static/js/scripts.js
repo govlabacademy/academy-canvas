@@ -1,5 +1,12 @@
 $(document).ready(function() {
-    var db = new Firebase('https://lean-canvas.firebaseio.com/');
+    var db = null;
+
+    if (location.hostname && location.hostname != 'localhost') {
+        db = new Firebase('https://lean-canvas.firebaseio.com/');
+
+    } else {
+        db = new Firebase('https://lean-canvas-dev.firebaseio.com/');
+    }
 
     state0(db);
 
@@ -8,7 +15,36 @@ $(document).ready(function() {
     window.onpopstate = function(event) { state0(db); };
 
     $('.b-project-list').on('click', '.e-project-list-item span', function() {
-        state2(db, slugy($(this).text()));
+        var id = slugy($(this).text());
+
+        if ($(this).hasClass('locked')) {
+            $('#unlock-canvas').foundation('reveal', 'open');
+            $('#unlock-canvas .e-button').data('id', id);
+
+        } else {
+            state2(db, id);
+        }
+
+        return false;
+    });
+
+    $('#unlock-canvas .e-button').click(function() {
+        var id = $(this).data('id'),
+            pwd = $(this).parent().prev().val(),
+            mail = id ;
+
+        db.authWithPassword({email: id + '@example.com', password: pwd},
+            function(error, authData) {
+                if (!error) {
+                    $('#unlock-canvas').foundation('reveal', 'close');
+                    state2(db, id);
+
+                } else {
+                    notify('error', 'Wrong password');
+                }
+
+            }, {remember: 'none'}
+        );
 
         return false;
     });
@@ -19,106 +55,132 @@ $(document).ready(function() {
     });
 
     $('.b-create-canvas .e-button').click(function() {
-        var id = slugy($(this).prev().val()),
-            name = $(this).prev().val();
-
-        db.child('canvas').child(id).once('value', function(snapshot) {
+        function create_canvas(db, id, uid) {
             var doc = {};
 
-            if (!snapshot.val()) {
-                doc.ux = '';
-                doc.foes = '';
-                doc.name = name;
-                doc.risk = '';
-                doc.costs = '';
-                doc.field = '';
-                doc.causes = '';
-                doc.events = '';
-                doc.changes = '';
-                doc.metrics = '';
-                doc.problem = '';
-                doc.adoption = '';
-                doc.approach = '';
-                doc.evidence = '';
-                doc.impacted = '';
-                doc.mechanism = '';
-                doc.partners = '';
-                doc.resources = '';
-                doc.activities = '';
-                doc.supporters = '';
-                doc.proposition = '';
+            doc.ux = '';
+            doc.uid = uid || '';
+            doc.foes = '';
+            doc.name = name;
+            doc.risk = '';
+            doc.costs = '';
+            doc.field = '';
+            doc.causes = '';
+            doc.events = '';
+            doc.changes = '';
+            doc.metrics = '';
+            doc.problem = '';
+            doc.adoption = '';
+            doc.approach = '';
+            doc.evidence = '';
+            doc.impacted = '';
+            doc.mechanism = '';
+            doc.partners = '';
+            doc.resources = '';
+            doc.activities = '';
+            doc.supporters = '';
+            doc.proposition = '';
 
-                doc.ux_timestamp = '';
-                doc.foes_timestamp = '';
-                doc.risk_timestamp = '';
-                doc.costs_timestamp = '';
-                doc.field_timestamp = '';
-                doc.causes_timestamp = '';
-                doc.events_timestamp = '';
-                doc.changes_timestamp = '';
-                doc.metrics_timestamp = '';
-                doc.problem_timestamp = '';
-                doc.adoption_timestamp = '';
-                doc.approach_timestamp = '';
-                doc.evidence_timestamp = '';
-                doc.impacted_timestamp = '';
-                doc.mechanism_timestamp = '';
-                doc.partners_timestamp = '';
-                doc.resources_timestamp = '';
-                doc.activities_timestamp = '';
-                doc.supporters_timestamp = '';
-                doc.proposition_timestamp = '';
+            doc.ux_timestamp = '';
+            doc.foes_timestamp = '';
+            doc.risk_timestamp = '';
+            doc.costs_timestamp = '';
+            doc.field_timestamp = '';
+            doc.causes_timestamp = '';
+            doc.events_timestamp = '';
+            doc.changes_timestamp = '';
+            doc.metrics_timestamp = '';
+            doc.problem_timestamp = '';
+            doc.adoption_timestamp = '';
+            doc.approach_timestamp = '';
+            doc.evidence_timestamp = '';
+            doc.impacted_timestamp = '';
+            doc.mechanism_timestamp = '';
+            doc.partners_timestamp = '';
+            doc.resources_timestamp = '';
+            doc.activities_timestamp = '';
+            doc.supporters_timestamp = '';
+            doc.proposition_timestamp = '';
 
-                doc.ux_comments = '';
-                doc.foes_comments = '';
-                doc.risk_comments = '';
-                doc.costs_comments = '';
-                doc.field_comments = '';
-                doc.causes_comments = '';
-                doc.events_comments = '';
-                doc.changes_comments = '';
-                doc.metrics_comments = '';
-                doc.problem_comments = '';
-                doc.adoption_comments = '';
-                doc.approach_comments = '';
-                doc.evidence_comments = '';
-                doc.impacted_comments = '';
-                doc.mechanism_comments = '';
-                doc.partners_comments = '';
-                doc.resources_comments = '';
-                doc.activities_comments = '';
-                doc.supporters_comments = '';
-                doc.proposition_comments = '';
+            doc.ux_comments = '';
+            doc.foes_comments = '';
+            doc.risk_comments = '';
+            doc.costs_comments = '';
+            doc.field_comments = '';
+            doc.causes_comments = '';
+            doc.events_comments = '';
+            doc.changes_comments = '';
+            doc.metrics_comments = '';
+            doc.problem_comments = '';
+            doc.adoption_comments = '';
+            doc.approach_comments = '';
+            doc.evidence_comments = '';
+            doc.impacted_comments = '';
+            doc.mechanism_comments = '';
+            doc.partners_comments = '';
+            doc.resources_comments = '';
+            doc.activities_comments = '';
+            doc.supporters_comments = '';
+            doc.proposition_comments = '';
 
-                doc.ux_comments_timestamp = '';
-                doc.foes_comments_timestamp = '';
-                doc.risk_comments_timestamp = '';
-                doc.costs_comments_timestamp = '';
-                doc.field_comments_timestamp = '';
-                doc.causes_comments_timestamp = '';
-                doc.events_comments_timestamp = '';
-                doc.changes_comments_timestamp = '';
-                doc.metrics_comments_timestamp = '';
-                doc.problem_comments_timestamp = '';
-                doc.adoption_comments_timestamp = '';
-                doc.approach_comments_timestamp = '';
-                doc.evidence_comments_timestamp = '';
-                doc.impacted_comments_timestamp = '';
-                doc.mechanism_comments_timestamp = '';
-                doc.partners_comments_timestamp = '';
-                doc.resources_comments_timestamp = '';
-                doc.activities_comments_timestamp = '';
-                doc.supporters_comments_timestamp = '';
-                doc.proposition_comments_timestamp = '';
+            doc.ux_comments_timestamp = '';
+            doc.foes_comments_timestamp = '';
+            doc.risk_comments_timestamp = '';
+            doc.costs_comments_timestamp = '';
+            doc.field_comments_timestamp = '';
+            doc.causes_comments_timestamp = '';
+            doc.events_comments_timestamp = '';
+            doc.changes_comments_timestamp = '';
+            doc.metrics_comments_timestamp = '';
+            doc.problem_comments_timestamp = '';
+            doc.adoption_comments_timestamp = '';
+            doc.approach_comments_timestamp = '';
+            doc.evidence_comments_timestamp = '';
+            doc.impacted_comments_timestamp = '';
+            doc.mechanism_comments_timestamp = '';
+            doc.partners_comments_timestamp = '';
+            doc.resources_comments_timestamp = '';
+            doc.activities_comments_timestamp = '';
+            doc.supporters_comments_timestamp = '';
+            doc.proposition_comments_timestamp = '';
 
-                db.child('canvas').child(id).set(doc);
+            db.child('canvas').child(id).set(doc);
 
-                state2(db, id, doc);
+            state2(db, id, doc);
+        }
 
-            } else {
-                notify('error', 'This canvas already exists');
-            }
-        });
+        var id = slugy($(this).prev().prev().prev().val()),
+            name = $(this).prev().prev().prev().val(),
+            pwd1 = $(this).prev().prev().val(),
+            pwd2 = $(this).prev().val(),
+            mail = id + '@example.com';
+
+        if (pwd1 === pwd2) {
+            db.child('canvas').child(id).once('value', function(snapshot) {
+                var doc = {};
+
+                if (!snapshot.val()) {
+                    if (pwd1.length) {
+                        db.createUser({email: mail, password: pwd1},
+                            function(error, userData) {
+                                if (!error) {
+                                    create_canvas(db, id, userData.uid);
+                                }
+                            }
+                        );
+
+                    } else {
+                        create_canvas(db, id);
+                    }
+
+                } else {
+                    notify('error', 'This canvas already exists');
+                }
+            });
+
+        } else {
+            notify('error', 'Passwords don\'t match');
+        }
 
         return false;
     });
@@ -149,7 +211,7 @@ $(document).ready(function() {
     // $('#edit-canvas .e-button').click(function() {
     //     var old_id = $('#canvas-name').text(),
     //         new_id = $('#edit-canvas .e-canvas-name').val(),
-    //         url = location.pathname + '?user=' + new_id;
+    //         url = LOcation.pathname + '?user=' + new_id;
 
 
     //     db.child('canvas').child(new_id).once('value', function(snapshot) {
@@ -206,11 +268,12 @@ function reset_all() {
     $('.e-canvas-content').val('');
     $('.e-canvas-comment').val('').addClass('m-display-none');
     $('.e-canvas-timestamp').addClass('m-display-none');
+    $('#unlock-canvas input').val('');
     $('.e-canvas-timestamp .e-action').text('');
     $('.e-canvas-timestamp .e-timeago').text('').attr('title', '');
     $('#edit-canvas .e-canvas-name').val('');
 
-    // history.replaceState(null, null, window.location.pathname);
+    history.replaceState(null, null, window.location.pathname);
 }
 
 function state0(db) {
@@ -226,13 +289,19 @@ function state0(db) {
 
 function state1(db) {
     reset_all();
+    db.unauth();
 
     db.child('canvas').once('value', function(snapshot) {
         $('.b-project-list p').remove();
 
-        for (var obj in snapshot.val()) {
-            var $span = $('<span/>').attr('href', '#').text(obj),
-                $p = $('<p/>').addClass('e-project-list-item');
+        for (var oid in snapshot.val()) {
+            var obj = snapshot.val()[oid],
+                $p = $('<p/>').addClass('e-project-list-item'),
+                $span = $('<span/>').attr('href', '#').text(obj.name);
+
+            if (obj.uid) {
+                $span.addClass('locked');
+            }
 
             $('.b-project-list').append($p.append($span));
             $('.b-project-list').removeClass('m-display-none');
@@ -313,15 +382,29 @@ function state2(db, id, object) {
         $('#canvas').removeClass('m-display-none');
     }
 
+    var usr = db.getAuth();
+
     reset_all();
 
     if (object) {
-        setup_canvas(object);
+        if (!object.uid || (usr && object.uid == usr.uid)) {
+            setup_canvas(object);
+
+        } else {
+            state1(db);
+        }
 
     } else {
         db.child('canvas').child(id).once('value', function(snapshot) {
+            var object = snapshot.val();
+
             if (snapshot.val()) {
-                setup_canvas(snapshot.val());
+                if (!object.uid || (usr && object.uid == usr.uid)) {
+                    setup_canvas(object);
+
+                } else {
+                    state1(db);
+                }
 
             } else {
                 state1(db);
