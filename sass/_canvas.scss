@@ -67,6 +67,49 @@
 
 }
 
+.b-canvas-description {
+  border-bottom: 1px solid $gray_20;
+  overflow: hidden;
+
+  .fa {
+    float: left;
+    color: $gray_20;
+    margin-top: 10px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .e-canvas-descriptions,
+  .e-one-liner {
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid transparent;
+    color: $gray_60;
+  }
+
+  .e-canvas-descriptions {
+    width: 90%;
+    padding-left: 40px;
+    position: relative;
+    left: -30px;
+  }
+
+  .e-one-liner:hover,
+  .e-canvas-descriptions:hover {  
+    border-color: $gray_10;
+  }
+  .e-one-liner:focus,
+  .e-canvas-descriptions:focus {
+    border-color: $gray_40;
+  }
+
+  #canvas-one-liner {
+    font-size: 1.4rem;
+    font-weight: 100;
+    text-align: center;
+  }
+}
+
 .b-canvas {
   margin: 30px 20px 60px;
 

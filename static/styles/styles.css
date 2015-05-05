@@ -2,7 +2,7 @@ body {
   background-color: rgba(0, 0, 0, 0.03); }
 
 body, h1, h2, h3, h4, h5, input {
-  font-family: proxima-nova, sans-serif; }
+  font-family: "proxima-nova", sans-serif; }
 
 .e-button {
   border-radius: 2px;
@@ -629,6 +629,37 @@ p,
     font-size: 1.5rem;
     text-align: center;
     font-weight: 300; }
+
+.b-canvas-description {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden; }
+  .b-canvas-description .fa {
+    float: left;
+    color: rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    z-index: 1;
+    position: relative; }
+  .b-canvas-description .e-canvas-descriptions,
+  .b-canvas-description .e-one-liner {
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid transparent;
+    color: rgba(0, 0, 0, 0.6); }
+  .b-canvas-description .e-canvas-descriptions {
+    width: 90%;
+    padding-left: 40px;
+    position: relative;
+    left: -30px; }
+  .b-canvas-description .e-one-liner:hover,
+  .b-canvas-description .e-canvas-descriptions:hover {
+    border-color: rgba(0, 0, 0, 0.1); }
+  .b-canvas-description .e-one-liner:focus,
+  .b-canvas-description .e-canvas-descriptions:focus {
+    border-color: rgba(0, 0, 0, 0.4); }
+  .b-canvas-description #canvas-one-liner {
+    font-size: 1.4rem;
+    font-weight: 100;
+    text-align: center; }
 
 .b-canvas {
   margin: 30px 20px 60px; }
