@@ -721,6 +721,10 @@ p,
         cursor: pointer; }
         .b-canvas .e-canvas-section .e-canvas-comment .e-delete-comment:hover {
           color: #ab204a; }
+    .b-canvas .e-canvas-section .e-canvas-timestamp {
+      font-size: .8rem;
+      color: rgba(0, 0, 0, 0.5);
+      font-weight: 600; }
 
 @media only screen and (min-width: 1024px) {
   .b-canvas-title {

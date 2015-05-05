@@ -177,8 +177,6 @@
       }
     }
 
-
-
     .e-canvas-comment {
       border-top: 1px solid $gray_20;
       padding-top: 4px;
@@ -199,6 +197,12 @@
       }
 
 
+    }
+
+    .e-canvas-timestamp {
+      font-size: .8rem;
+      color: $gray_50;
+      font-weight: 600;
     }
   }
 }
