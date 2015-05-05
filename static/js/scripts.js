@@ -58,10 +58,14 @@ $(document).ready(function() {
         function create_canvas(db, id, uid) {
             var doc = {};
 
-            doc.ux = '';
             doc.uid = uid || '';
-            doc.foes = '';
             doc.name = name;
+            doc.author = '';
+            doc.one_liner = '';
+            doc.location = '';
+
+            doc.ux = '';
+            doc.foes = '';
             doc.risk = '';
             doc.costs = '';
             doc.field = '';
@@ -189,7 +193,8 @@ $(document).ready(function() {
         $(this).data('prev-val', $(this).val());
     });
 
-    $('.e-canvas-content, .e-canvas-comment').blur(function() {
+    $('.e-canvas-content, .e-canvas-comment, .e-canvas-descriptions')
+    .blur(function() {
         if ($(this).data('prev-val') != $(this).val()) {
             var id = slugy($('#canvas-name').text()),
                 doc = {};
@@ -211,7 +216,7 @@ $(document).ready(function() {
     // $('#edit-canvas .e-button').click(function() {
     //     var old_id = $('#canvas-name').text(),
     //         new_id = $('#edit-canvas .e-canvas-name').val(),
-    //         url = LOcation.pathname + '?user=' + new_id;
+    //         url = Location.pathname + '?user=' + new_id;
 
 
     //     db.child('canvas').child(new_id).once('value', function(snapshot) {
@@ -263,6 +268,7 @@ function reset_all() {
     $('#canvas').addClass('m-display-none');
     $('#landing').addClass('m-display-none');
     $('#canvas-name').text('');
+    $('.e-canvas-descriptions').val('');
     $('.e-canvas-edit').addClass('m-display-none');
     $('.e-add-comment').removeClass('display-none');
     $('.e-canvas-content').val('');
@@ -314,20 +320,22 @@ function state1(db) {
 function state2(db, id, object) {
     function setup_canvas(obj) {
         function set_data(item) {
-            var t01 = obj[item + '_timestamp'],
-                t02 = obj[item + '_comments_timestamp'],
-                t03 = t01 > t02 ? t01 : t02,
+            var t01 = obj[item + '_timestamp'] || '',
+                t02 = obj[item + '_comments_timestamp'] || '',
+                t03 = '',
                 txt = '';
 
-
-            if (t01  && !t02) {
+            if (t01 && !t02) {
+                t03 = t01;
                 txt = 'Edited ';
 
             } else if (!t01 && t02) {
+                t03 = t02;
                 txt = 'Commented ';
 
             } else if (t01 && t02) {
-                txt = t01 > t02 ? 'Edited ' : 'Commented ';
+                t03 = new Date(t01) > new Date(t02) ? t01 : t02;
+                txt = new Date(t01) > new Date(t02) ? 'Edited ' : 'Commented ';
             }
 
             $('#canvas-' + item).val(obj[item]);
@@ -358,6 +366,9 @@ function state2(db, id, object) {
         set_data('proposition');
 
         $('#canvas-name').text(obj.name);
+        $('#canvas-author').val(obj.author);
+        $('#canvas-one-liner').val(obj.one_liner);
+        $('#canvas-location').val(obj.location);
         $('#edit-canvas .e-canvas-name').val(obj.name);
 
         $('.e-canvas-comment.m-display-none').each(function() {
