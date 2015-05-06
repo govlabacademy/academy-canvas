@@ -13,8 +13,13 @@
 .b-top-navigation {
     @include drop-shadow;
 
-    .row {
-        text-align: center;
+    .e-canvas-edit {
+        float: right;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: 100;
+        color: $white;
     }
 }
 

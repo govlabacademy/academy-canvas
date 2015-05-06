@@ -99,8 +99,13 @@ p,
 
 .b-top-navigation {
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.6); }
-  .b-top-navigation .row {
-    text-align: center; }
+  .b-top-navigation .e-canvas-edit {
+    float: right;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 100;
+    color: white; }
 
 .b-logo {
   display: block;

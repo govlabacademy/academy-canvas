@@ -24,6 +24,7 @@
     <header class="b-top-navigation-wrapper">
       <div class="b-top-navigation m-full">
         <a href="." class="b-logo" title="Home"><img src="static/img/govlab-logo-white.png" alt="Smarter State"/><span>Canvas</span></a>
+        <span class="e-canvas-edit">Edit</span>
       </div>
 
       <div class="b-system-message">
@@ -45,7 +46,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="column large-9 large-centered">
             <div class="b-panel b-create-canvas">
@@ -84,14 +85,14 @@
                 <i class="fa fa-lg fa-pencil"></i>
                 <input id="canvas-author" class="e-canvas-descriptions" type="text" name="authors" placeholder="Author..."/>
               </div>
-              
+
               <div class="column large-4">
                 <i class="fa fa-lg fa-map-marker"></i>
                 <input id="canvas-location" class="e-canvas-descriptions" type="text" name="location" placeholder="Location..."/>
               </div>
             </div>
           </div>
-          
+
         </section>
 
         <section class="b-content-section b-canvas">
@@ -335,11 +336,17 @@
 
     <div id="edit-canvas" class="b-edit-canvas reveal-modal row" data-reveal>
       <div class="column large-9 large-centered">
-          <h3>Rename Canvas</h3>
+          <h3>Edit Canvas</h3>
 
-          <input class="e-canvas-name" type="text" name="canvas_name" required placeholder="Canvas Name">
+          <form>
+              <input type="password" name="old_pwd" placeholder="Old Password (if exists)"/>
+              <input type="password" name="new_pwd" placeholder="New Password (empty to unlock)"/>
+              <input type="password" name="confirm" placeholder="Confirm Password (empty to unlock)"/>
 
-          <div><span class="e-button">Save</span></div>
+              <!--<input class="e-canvas-name" type="text" name="canvas_name" required placeholder="Canvas Name">-->
+
+              <div><button class="e-button">Save</button></div>
+          </form>
       </div>
     </div>
 
@@ -347,9 +354,11 @@
       <div class="column large-9 large-centered">
           <h3>Password</h3>
 
-          <input type="password" required placeholder="Password">
+          <form>
+              <input type="password" required placeholder="Password">
 
-          <div><span class="e-button">Submit</span></div>
+              <div><button class="e-button">Submit</button></div>
+          </form>
       </div>
     </div>
   </body>

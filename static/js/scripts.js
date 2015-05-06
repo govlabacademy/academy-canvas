@@ -19,7 +19,7 @@ $(document).ready(function() {
 
         if ($(this).hasClass('locked')) {
             $('#unlock-canvas').foundation('reveal', 'open');
-            $('#unlock-canvas .e-button').data('id', id);
+            $('#unlock-canvas form').data('id', id);
 
         } else {
             state2(db, id);
@@ -28,10 +28,11 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#unlock-canvas .e-button').click(function() {
+    $('#unlock-canvas form').submit(function(event) {
         var id = $(this).data('id'),
-            pwd = $(this).parent().prev().val(),
-            mail = id ;
+            pwd = $(this).find('input').val();
+
+        event.preventDefault();
 
         db.authWithPassword({email: id + '@example.com', password: pwd},
             function(error, authData) {
@@ -193,31 +194,106 @@ $(document).ready(function() {
         $(this).data('prev-val', $(this).val());
     });
 
-    $('.e-canvas-content, .e-canvas-comment, .e-canvas-descriptions')
-    .blur(function() {
-        if ($(this).data('prev-val') != $(this).val()) {
-            var id = slugy($('#canvas-name').text()),
-                doc = {};
+    $('.e-canvas-content, .e-canvas-comment, .e-canvas-descriptions').blur(
+        function() {
+            var $inp = $(this);
 
-            doc[$(this).attr('name')] = $(this).val();
-            doc[$(this).attr('name') + '_timestamp'] = new Date();
+            if ($inp.data('prev-val') != $inp.val()) {
+                var id = slugy($('#canvas-name').text()),
+                    doc = {};
 
-            db.child('canvas').child(id).update(doc);
+                doc[$inp.attr('name')] = $inp.val();
+                doc[$inp.attr('name') + '_timestamp'] = new Date();
 
-            notify('success', 'Canvas saved');
+                db.child('canvas').child(id).update(doc);
+
+                notify('success', 'Canvas saved');
+            }
+
+            if ($inp.hasClass('e-canvas-comment') && !$inp.val()) {
+                $inp.addClass('m-display-none');
+                $inp.siblings('.e-add-comment').removeClass('m-display-none');
+            }
         }
+    );
 
-        if ($(this).hasClass('e-canvas-comment') && !$(this).val()) {
-            $(this).addClass('m-display-none');
-            $(this).siblings('.e-add-comment').removeClass('m-display-none');
-        }
+    $('.e-canvas-edit').click(function() {
+        $('#edit-canvas').foundation('reveal', 'open');
     });
 
-    // $('#edit-canvas .e-button').click(function() {
-    //     var old_id = $('#canvas-name').text(),
-    //         new_id = $('#edit-canvas .e-canvas-name').val(),
-    //         url = Location.pathname + '?user=' + new_id;
+    $('#edit-canvas form').submit(function() {
+        var cnvs_id = slugy($('#canvas-name').text()),
+            mailbox = cnvs_id + '@example.com',
+            old_pwd = $(this).find('[name="old_pwd"]').val(),
+            new_pwd = $(this).find('[name="new_pwd"]').val(),
+            confirm = $(this).find('[name="confirm"]').val(),
+            updates = {};
 
+        if (new_pwd === confirm) {
+            if (new_pwd === old_pwd) {
+                $('#edit-canvas').foundation('reveal', 'close');
+                $('#edit-canvas form')[0].reset();
+
+            } else if (new_pwd.length) {
+                if (old_pwd.length) {
+                    updates.email = mailbox;
+                    updates.oldPassword = old_pwd;
+                    updates.newPassword = new_pwd;
+
+                    db.changePassword(updates, function(error) {
+                        if (error === null) {
+                            $('#edit-canvas').foundation('reveal', 'close');
+                            $('#edit-canvas form')[0].reset();
+
+                            notify('success', 'Canvas saved');
+
+                        } else {
+                            notify('error', 'Error changing password');
+                        }
+                    });
+
+                } else {
+                    updates.email = mailbox;
+                    updates.password = new_pwd;
+
+                    db.createUser(updates, function(error, userData) {
+                        if (!error) {
+                            var doc = {};
+
+                            doc.uid = userData.uid;
+
+                            db.child('canvas').child(cnvs_id).update(doc);
+
+                            $('#edit-canvas').foundation('reveal', 'close');
+                            $('#edit-canvas form')[0].reset();
+
+                            notify('success', 'Canvas saved');
+                        }
+                    });
+                }
+
+            } else {
+                updates.email = mailbox;
+                updates.password = old_pwd;
+
+                db.removeUser(updates, function(error) {
+                    if (error === null) {
+                        db.child('canvas').child(cnvs_id).update({uid: ''});
+
+                        $('#edit-canvas').foundation('reveal', 'close');
+                        $('#edit-canvas form')[0].reset();
+
+                        notify('success', 'Canvas saved');
+
+                    } else {
+                        notify('error', 'Error changing password');
+                    }
+                });
+            }
+
+        } else {
+            notify('error', 'Passwords don\'t match');
+        }
 
     //     db.child('canvas').child(new_id).once('value', function(snapshot) {
     //         var doc = {};
@@ -237,7 +313,9 @@ $(document).ready(function() {
     //             notify('error', 'This canvas already exists');
     //         }
     //     });
-    // });
+
+        return false;
+    });
 });
 
 function notify(type, text) {
@@ -275,9 +353,10 @@ function reset_all() {
     $('.e-canvas-comment').val('').addClass('m-display-none');
     $('.e-canvas-timestamp').addClass('m-display-none');
     $('#unlock-canvas input').val('');
+    $('#unlock-canvas form').data('id', '');
     $('.e-canvas-timestamp .e-action').text('');
     $('.e-canvas-timestamp .e-timeago').text('').attr('title', '');
-    $('#edit-canvas .e-canvas-name').val('');
+    $('#edit-canvas form')[0].reset();
 
     history.replaceState(null, null, window.location.pathname);
 }
@@ -389,6 +468,7 @@ function state2(db, id, object) {
 
         history.pushState(null, null, location.pathname + '?user=' + id);
 
+        $('.e-canvas-edit').removeClass('m-display-none');
         $('.e-canvas-timestamp .e-timeago').timeago();
         $('#canvas').removeClass('m-display-none');
     }
