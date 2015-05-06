@@ -750,7 +750,10 @@ p,
     .b-canvas .e-canvas-col {
       flex: 1;
       display: flex;
-      flex-direction: column; } }
+      flex-direction: column; }
+
+  #edit-canvas {
+    width: 40%; } }
 @media only screen and (min-width: 1024px) {
   .b-logo {
     max-width: 37%; }

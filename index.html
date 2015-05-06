@@ -24,7 +24,7 @@
     <header class="b-top-navigation-wrapper">
       <div class="b-top-navigation m-full">
         <a href="." class="b-logo" title="Home"><img src="static/img/govlab-logo-white.png" alt="Smarter State"/><span>Canvas</span></a>
-        <span class="e-canvas-edit">Edit</span>
+        <span class="e-canvas-edit"><i class="fa fa-cog"></i></span>
       </div>
 
       <div class="b-system-message">
@@ -335,13 +335,13 @@
     </footer>
 
     <div id="edit-canvas" class="b-edit-canvas reveal-modal row" data-reveal>
-      <div class="column large-9 large-centered">
-          <h3>Edit Canvas</h3>
+      <div class="column large-12 large-centered">
+          <h3>Edit Canvas Password</h3>
 
           <form>
               <input type="password" name="old_pwd" placeholder="Old Password (if exists)"/>
-              <input type="password" name="new_pwd" placeholder="New Password (empty to unlock)"/>
-              <input type="password" name="confirm" placeholder="Confirm Password (empty to unlock)"/>
+              <input type="password" name="new_pwd" placeholder="New Password (leave empty to unlock)"/>
+              <input type="password" name="confirm" placeholder="Confirm Password (leave empty to unlock)"/>
 
               <!--<input class="e-canvas-name" type="text" name="canvas_name" required placeholder="Canvas Name">-->
 
