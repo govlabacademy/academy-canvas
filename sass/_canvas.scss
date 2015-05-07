@@ -207,6 +207,36 @@
   }
 }
 
+.b-release-note {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid $gray_40;
+
+  h1 {
+    font-size: 1.8rem;
+    font-size: 400;
+    text-align: left;
+    margin: 10px 0 10px;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $gray_40;
+  }
+
+  .e-date {
+    margin-top: 35px;
+  }
+
+  .e-version {
+    color: $gray_80;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+  }
+}
+
 @media only screen and (min-width : $desktop_width) {
 .b-canvas-title {
   margin-top: 40px;
@@ -246,3 +276,5 @@
 }
 
 }
+
+

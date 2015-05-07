@@ -16,6 +16,23 @@
 		max-width: 80%;
 	}
 
+	p {
+		font-size: 1rem;
+	}
+
+	a {
+		color: $white_60;
+	}
+
+	a:hover {
+		color: $white;
+	}
+
+	.e-release-archive-link {
+		float: right;
+		margin-top: 40px;
+	}
+
 	.e-creative-commons {
 		font-size: .8rem;
 		line-height: 1rem;

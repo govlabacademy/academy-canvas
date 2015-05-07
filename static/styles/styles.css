@@ -217,6 +217,15 @@ p,
     margin: 0 0 10px; }
   .b-footer img {
     max-width: 80%; }
+  .b-footer p {
+    font-size: 1rem; }
+  .b-footer a {
+    color: rgba(255, 255, 255, 0.6); }
+  .b-footer a:hover {
+    color: white; }
+  .b-footer .e-release-archive-link {
+    float: right;
+    margin-top: 40px; }
   .b-footer .e-creative-commons {
     font-size: .8rem;
     line-height: 1rem;
@@ -730,6 +739,27 @@ p,
       font-size: .8rem;
       color: rgba(0, 0, 0, 0.5);
       font-weight: 600; }
+
+.b-release-note {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4); }
+  .b-release-note h1 {
+    font-size: 1.8rem;
+    font-size: 400;
+    text-align: left;
+    margin: 10px 0 10px; }
+  .b-release-note h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.4); }
+  .b-release-note .e-date {
+    margin-top: 35px; }
+  .b-release-note .e-version {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1.4rem;
+    margin-bottom: 30px; }
 
 @media only screen and (min-width: 1024px) {
   .b-canvas-title {
