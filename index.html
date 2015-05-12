@@ -15,6 +15,7 @@
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src="static/assets/jquery.timeago.js"></script>
     <script src="static/assets/unorm-1.3.3.min.js"></script>
+    <script src="static/assets/markdown.min.js"></script>
     <script src="static/js/scripts.js"></script>
     <script src="//use.typekit.net/zez3buj.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
@@ -49,13 +50,14 @@
 
         <div class="row">
           <div class="column large-9 large-centered">
-            <div class="b-panel b-create-canvas">
+            <form class="b-panel b-create-canvas">
               <h3>Create a Canvas</h3>
               <p>The system will save your canvas as you go. You can come back and edit it anytime. A canvas saved here is viewable by others. If you want to fill out the canvas privately, you can add a password to it. You can also change and disable the password at anytime.</p>
-              <input type="text" placeholder="Name">
-              <input type="password" placeholder="Password (optional)">
-              <input type="password" placeholder="Confirm password (optional)"><span class="e-button">Create</span>
-            </div>
+              <input type="text" name="name" placeholder="Name">
+              <input type="password" name-"pwd1" placeholder="Password (optional)">
+              <input type="password" name="pwd2" placeholder="Confirm password (optional)">
+              <button class="e-button">Create</button>
+            </form>
           </div>
         </div>
 
@@ -81,6 +83,16 @@
               <div class="column large-12">
                 <input id="canvas-one-liner" class="e-one-liner" type="text" name="one_liner" placeholder="One Liner"/>
               </div>
+              <div class="column large-12">
+                <select id="canvas-category" name="category">
+                  <option disabled selected>Category</option>
+                  <option value="cat1">cat1</option>
+                  <option value="cat2">cat2</option>
+                  <option value="cat3">cat3</option>
+                  <option value="cat4">cat4</option>
+                  <option value="cat5">cat5</option>
+                </select>
+              </div>
               <div class="column large-8">
                 <i class="fa fa-lg fa-pencil"></i>
                 <input id="canvas-author" class="e-canvas-descriptions" type="text" name="authors" placeholder="Author..."/>
@@ -103,7 +115,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>The problem I am tackling is…</h3>
                 <h4>What is the need?</h4>
-                <textarea id="canvas-problem" class="e-canvas-content" name="problem"></textarea>
+                <textarea id="canvas-problem" class="e-canvas-content m-display-none" name="problem"></textarea>
+                <div id="canvas-problem-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-problem-comments" class="e-canvas-comment m-display-none" name="problem_comments" placeholder="comments"></textarea>
                 <div id="canvas-problem-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -114,7 +127,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3 style="letter-spacing: -0.1px;">The people most impacted by this problem are…</h3>
                 <h4>Who is harmed?</h4>
-                <textarea id="canvas-impacted" class="e-canvas-content" name="impacted"></textarea>
+                <textarea id="canvas-impacted" class="e-canvas-content m-display-none" name="impacted"></textarea>
+                <div id="canvas-impacted-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-impacted-comments" class="e-canvas-comment m-display-none" name="impacted_comments" placeholder="comments"></textarea>
                 <div id="canvas-impacted-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -125,7 +139,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>I believe the major causes of this problem are…</h3>
                 <h4>What are the causes?</h4>
-                <textarea id="canvas-causes" class="e-canvas-content" name="causes"></textarea>
+                <textarea id="canvas-causes" class="e-canvas-content m-display-none" name="causes"></textarea>
+                <div id="canvas-causes-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-causes-comments" class="e-canvas-comment m-display-none" name="causes_comments" placeholder="comments"></textarea>
                 <div id="canvas-causes-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -140,7 +155,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>I believe this because…</h3>
                 <h4>What is the evidence? Also who can you interview? What can you find out? What experiment can you run?</h4>
-                <textarea id="canvas-evidence" class="e-canvas-content" name="evidence"></textarea>
+                <textarea id="canvas-evidence" class="e-canvas-content m-display-none" name="evidence"></textarea>
+                <div id="canvas-evidence-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-evidence-comments" class="e-canvas-comment m-display-none" name="evidence_comments" placeholder="comments"></textarea>
                 <div id="canvas-evidence-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -154,7 +170,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>The problem can be improved by…</h3>
                 <h4>What is The Big Idea? What is the value proposition?</h4>
-                <textarea id="canvas-proposition" class="e-canvas-content" name="proposition"></textarea>
+                <textarea id="canvas-proposition" class="e-canvas-content m-display-none" name="proposition"></textarea>
+                <div id="canvas-proposition-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-proposition-comments" class="e-canvas-comment m-display-none" name="proposition_comments" placeholder="comments"></textarea>
                 <div id="canvas-proposition-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -163,7 +180,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>This approach will have an impact because...</h3>
                 <h4>What is the mechanism of beneficial change?</h4>
-                <textarea id="canvas-mechanism" class="e-canvas-content" name="mechanism"></textarea>
+                <textarea id="canvas-mechanism" class="e-canvas-content m-display-none" name="mechanism"></textarea>
+                <div id="canvas-mechanism-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-mechanism-comments" class="e-canvas-comment m-display-none" name="mechanism_comments" placeholder="comments"></textarea>
                 <div id="canvas-mechanism-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -174,7 +192,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>The impact will be measurable because…</h3>
                 <h4>Key metrics?</h4>
-                <textarea id="canvas-metrics" class="e-canvas-content" name="metrics"></textarea>
+                <textarea id="canvas-metrics" class="e-canvas-content m-display-none" name="metrics"></textarea>
+                <div id="canvas-metrics-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-metrics-comments" class="e-canvas-comment m-display-none" name="metrics_comments" placeholder="comments"></textarea>
                 <div id="canvas-metrics-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -184,7 +203,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>Those with the greatest interest in change are…</h3>
                 <h4>Key supporters? Segments?</h4>
-                <textarea id="canvas-supporters" class="e-canvas-content" name="supporters"></textarea>
+                <textarea id="canvas-supporters" class="e-canvas-content m-display-none" name="supporters"></textarea>
+                <div id="canvas-supporters-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-supporters-comments" class="e-canvas-comment m-display-none" name="supporters_comments" placeholder="comments"></textarea>
                 <div id="canvas-supporters-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -193,7 +213,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>Those most opposed to change are…</h3>
                 <h4>Key foes?</h4>
-                <textarea id="canvas-foes" class="e-canvas-content" name="foes"></textarea>
+                <textarea id="canvas-foes" class="e-canvas-content m-display-none" name="foes"></textarea>
+                <div id="canvas-foes-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-foes-comments" class="e-canvas-comment m-display-none" name="foes_comments" placeholder="comments"></textarea>
                 <div id="canvas-foes-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -207,7 +228,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>The way it will work is…</h3>
                 <h4>What is the user experience?</h4>
-                <textarea id="canvas-ux" class="e-canvas-content" name="ux"></textarea>
+                <textarea id="canvas-ux" class="e-canvas-content m-display-none" name="ux"></textarea>
+                <div id="canvas-ux-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-ux-comments" class="e-canvas-comment m-display-none" name="ux_comments" placeholder="comments"></textarea>
                 <div id="canvas-ux-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -216,7 +238,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>To make this happen, these changes need to occur…</h3>
                 <h4>Who Has to Do What To Make It Happen?</h4>
-                <textarea id="canvas-changes" class="e-canvas-content" name="changes"></textarea>
+                <textarea id="canvas-changes" class="e-canvas-content m-display-none" name="changes"></textarea>
+                <div id="canvas-changes-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-changes-comments" class="e-canvas-comment m-display-none" name="changes_comments" placeholder="comments"></textarea>
                 <div id="canvas-changes-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -227,7 +250,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>To undertake my big idea, I could work with…</h3>
                 <h4>Key partners to execute? Key partners to help others evaluate your value proposition?</h4>
-                <textarea id="canvas-partners" class="e-canvas-content" name="partners"></textarea>
+                <textarea id="canvas-partners" class="e-canvas-content m-display-none" name="partners"></textarea>
+                <div id="canvas-partners-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-partners-comments" class="e-canvas-comment m-display-none" name="partners_comments" placeholder="comments"></textarea>
                 <div id="canvas-partners-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -236,7 +260,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>The reason to do this now is…</h3>
                 <h4>What are the precipitating events?</h4>
-                <textarea id="canvas-events" class="e-canvas-content" name="events"></textarea>
+                <textarea id="canvas-events" class="e-canvas-content m-display-none" name="events"></textarea>
+                <div id="canvas-events-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-events-comments" class="e-canvas-comment m-display-none" name="events_comments" placeholder="comments"></textarea>
                 <div id="canvas-events-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -249,7 +274,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>Others working in this space include…</h3>
                 <h4>Who else is in the field?</h4>
-                <textarea id="canvas-field" class="e-canvas-content" name="field"></textarea>
+                <textarea id="canvas-field" class="e-canvas-content m-display-none" name="field"></textarea>
+                <div id="canvas-field-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-field-comments" class="e-canvas-comment m-display-none" name="field_comments" placeholder="comments"></textarea>
                 <div id="canvas-field-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -259,7 +285,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>My approach is better because…</h3>
                 <h4>What's wrong? Missing? Not working?</h4>
-                <textarea id="canvas-approach" class="e-canvas-content" name="approach"></textarea>
+                <textarea id="canvas-approach" class="e-canvas-content m-display-none" name="approach"></textarea>
+                <div id="canvas-approach-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-approach-comments" class="e-canvas-comment m-display-none" name="approach_comments" placeholder="comments"></textarea>
                 <div id="canvas-approach-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -269,7 +296,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>Key resources (besides financial ones) I will need to be successful…</h3>
                 <h4>Physical, human and intellectual resources?</h4>
-                <textarea id="canvas-resources" class="e-canvas-content" name="resources"></textarea>
+                <textarea id="canvas-resources" class="e-canvas-content m-display-none" name="resources"></textarea>
+                <div id="canvas-resources-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-resources-comments" class="e-canvas-comment m-display-none" name="resources_comments" placeholder="comments"></textarea>
                 <div id="canvas-resources-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -284,7 +312,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>My strategy for rolling out this project involves the following key activities...</h3>
                 <h4>Next steps? Pilots?</h4>
-                <textarea id="canvas-activities" class="e-canvas-content" name="activities"></textarea>
+                <textarea id="canvas-activities" class="e-canvas-content m-display-none" name="activities"></textarea>
+                <div id="canvas-activities-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-activities-comments" class="e-canvas-comment m-display-none" name="activities_comments" placeholder="comments"></textarea>
                 <div id="canvas-activities-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -292,7 +321,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>I will sustain this project by…</h3>
                 <h4>Cost Structure? Financial Sustainability? Revenue Streams?</h4>
-                <textarea id="canvas-costs" class="e-canvas-content" name="costs"></textarea>
+                <textarea id="canvas-costs" class="e-canvas-content m-display-none" name="costs"></textarea>
+                <div id="canvas-costs-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-costs-comments" class="e-canvas-comment m-display-none" name="costs_comments" placeholder="comments"></textarea>
                 <div id="canvas-costs-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -302,7 +332,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>My biggest risk is…</h3>
                 <h4>How might this go wrong? How might the problem evolve? What are the legal, cultural and other impediments?</h4>
-                <textarea id="canvas-risk" class="e-canvas-content" name="risk"></textarea>
+                <textarea id="canvas-risk" class="e-canvas-content m-display-none" name="risk"></textarea>
+                <div id="canvas-risk-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-risk-comments" class="e-canvas-comment m-display-none" name="risk_comments" placeholder="comments"></textarea>
                 <div id="canvas-risk-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -310,7 +341,8 @@
                 <i class="fa fa-comment e-add-comment"></i>
                 <h3>I will raise awareness about my project by…</h3>
                 <h4>How will I promote adoption?</h4>
-                <textarea id="canvas-adoption" class="e-canvas-content" name="adoption"></textarea>
+                <textarea id="canvas-adoption" class="e-canvas-content m-display-none" name="adoption"></textarea>
+                <div id="canvas-adoption-md" class="e-canvas-content-md"></div>
                 <textarea id="canvas-adoption-comments" class="e-canvas-comment m-display-none" name="adoption_comments" placeholder="comments"></textarea>
                 <div id="canvas-adoption-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
               </div>
@@ -362,5 +394,14 @@
           </form>
       </div>
     </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments);},i[r].l=1*new Date();
+      a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+      m.parentNode.insertBefore(a,m); })(window,document,'script',
+      '//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40012093-3', 'auto'); ga('send', 'pageview');
+    </script>
   </body>
 </html>

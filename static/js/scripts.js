@@ -1,8 +1,13 @@
 $(document).ready(function() {
     var db = null;
 
-    if (location.hostname && location.hostname != 'localhost') {
-        db = new Firebase('https://lean-canvas.firebaseio.com/');
+    if (location.hostname == 'govlabacademy.org') {
+        if (location.pathname == '/canvas/') {
+            db = new Firebase('https://lean-canvas.firebaseio.com/');
+
+        } else if (location.pathname == '/public-canvas/') {
+            db = new Firebase('https://lean-canvas-public.firebaseio.com/');
+        }
 
     } else {
         db = new Firebase('https://lean-canvas-dev.firebaseio.com/');
@@ -55,109 +60,56 @@ $(document).ready(function() {
         $(this).siblings('.e-canvas-comment').removeClass('m-display-none');
     });
 
-    $('.b-create-canvas .e-button').click(function() {
+    $('.b-create-canvas').submit(function(event) {
         function create_canvas(db, id, uid) {
+            function set_data(name) {
+                doc[name] = '';
+                doc[name + '_timestamp'] = '';
+                doc[name + '_comments'] = '';
+                doc[name + '_comments_timestamp'] = '';
+            }
+
             var doc = {};
 
             doc.uid = uid || '';
             doc.name = name;
             doc.author = '';
-            doc.one_liner = '';
             doc.location = '';
+            doc.one_liner = '';
+            doc.category = '';
 
-            doc.ux = '';
-            doc.foes = '';
-            doc.risk = '';
-            doc.costs = '';
-            doc.field = '';
-            doc.causes = '';
-            doc.events = '';
-            doc.changes = '';
-            doc.metrics = '';
-            doc.problem = '';
-            doc.adoption = '';
-            doc.approach = '';
-            doc.evidence = '';
-            doc.impacted = '';
-            doc.mechanism = '';
-            doc.partners = '';
-            doc.resources = '';
-            doc.activities = '';
-            doc.supporters = '';
-            doc.proposition = '';
-
-            doc.ux_timestamp = '';
-            doc.foes_timestamp = '';
-            doc.risk_timestamp = '';
-            doc.costs_timestamp = '';
-            doc.field_timestamp = '';
-            doc.causes_timestamp = '';
-            doc.events_timestamp = '';
-            doc.changes_timestamp = '';
-            doc.metrics_timestamp = '';
-            doc.problem_timestamp = '';
-            doc.adoption_timestamp = '';
-            doc.approach_timestamp = '';
-            doc.evidence_timestamp = '';
-            doc.impacted_timestamp = '';
-            doc.mechanism_timestamp = '';
-            doc.partners_timestamp = '';
-            doc.resources_timestamp = '';
-            doc.activities_timestamp = '';
-            doc.supporters_timestamp = '';
-            doc.proposition_timestamp = '';
-
-            doc.ux_comments = '';
-            doc.foes_comments = '';
-            doc.risk_comments = '';
-            doc.costs_comments = '';
-            doc.field_comments = '';
-            doc.causes_comments = '';
-            doc.events_comments = '';
-            doc.changes_comments = '';
-            doc.metrics_comments = '';
-            doc.problem_comments = '';
-            doc.adoption_comments = '';
-            doc.approach_comments = '';
-            doc.evidence_comments = '';
-            doc.impacted_comments = '';
-            doc.mechanism_comments = '';
-            doc.partners_comments = '';
-            doc.resources_comments = '';
-            doc.activities_comments = '';
-            doc.supporters_comments = '';
-            doc.proposition_comments = '';
-
-            doc.ux_comments_timestamp = '';
-            doc.foes_comments_timestamp = '';
-            doc.risk_comments_timestamp = '';
-            doc.costs_comments_timestamp = '';
-            doc.field_comments_timestamp = '';
-            doc.causes_comments_timestamp = '';
-            doc.events_comments_timestamp = '';
-            doc.changes_comments_timestamp = '';
-            doc.metrics_comments_timestamp = '';
-            doc.problem_comments_timestamp = '';
-            doc.adoption_comments_timestamp = '';
-            doc.approach_comments_timestamp = '';
-            doc.evidence_comments_timestamp = '';
-            doc.impacted_comments_timestamp = '';
-            doc.mechanism_comments_timestamp = '';
-            doc.partners_comments_timestamp = '';
-            doc.resources_comments_timestamp = '';
-            doc.activities_comments_timestamp = '';
-            doc.supporters_comments_timestamp = '';
-            doc.proposition_comments_timestamp = '';
+            set_data('ux');
+            set_data('foes');
+            set_data('risk');
+            set_data('costs');
+            set_data('field');
+            set_data('causes');
+            set_data('events');
+            set_data('changes');
+            set_data('metrics');
+            set_data('problem');
+            set_data('adoption');
+            set_data('approach');
+            set_data('evidence');
+            set_data('impacted');
+            set_data('mechanism');
+            set_data('partners');
+            set_data('resources');
+            set_data('activities');
+            set_data('supporters');
+            set_data('proposition');
 
             db.child('canvas').child(id).set(doc);
 
             state2(db, id, doc);
         }
 
-        var id = slugy($(this).prev().prev().prev().val()),
-            name = $(this).prev().prev().prev().val(),
-            pwd1 = $(this).prev().prev().val(),
-            pwd2 = $(this).prev().val(),
+        event.preventDefault();
+
+        var id = slugy($(this).find('input').eq(0).val()),
+            name = $(this).find('input').eq(0).val(),
+            pwd1 = $(this).find('input').eq(1).val(),
+            pwd2 = $(this).find('input').eq(2).val(),
             mail = id + '@example.com';
 
         if (pwd1 === pwd2) {
@@ -190,6 +142,11 @@ $(document).ready(function() {
         return false;
     });
 
+    $('.e-canvas-content-md').click(function() {
+        $(this).addClass('m-display-none');
+        $(this).prev().removeClass('m-display-none').focus();
+    });
+
     $('.e-canvas-content, .e-canvas-comment').focus(function() {
         $(this).data('prev-val', $(this).val());
     });
@@ -203,19 +160,38 @@ $(document).ready(function() {
                     doc = {};
 
                 doc[$inp.attr('name')] = $inp.val();
-                doc[$inp.attr('name') + '_timestamp'] = new Date();
+
+                if (!$inp.hasClass('e-canvas-descriptions')) {
+                    doc[$inp.attr('name') + '_timestamp'] = new Date();
+                }
 
                 db.child('canvas').child(id).update(doc);
 
                 notify('success', 'Canvas saved');
             }
 
-            if ($inp.hasClass('e-canvas-comment') && !$inp.val()) {
+            if ($inp.hasClass('e-canvas-content')) {
+                $inp.addClass('m-display-none');
+                $inp.next().html(markdown.toHTML($inp.val()));
+                $inp.next().removeClass('m-display-none');
+
+            } else if ($inp.hasClass('e-canvas-comment') && !$inp.val()) {
                 $inp.addClass('m-display-none');
                 $inp.siblings('.e-add-comment').removeClass('m-display-none');
             }
         }
     );
+
+    $('#canvas-category').change(function() {
+        var id = slugy($('#canvas-name').text()),
+            doc = {};
+
+        doc.category = $(this).val();
+
+        db.child('canvas').child(id).update(doc);
+
+        notify('success', 'Canvas saved');
+    });
 
     $('.e-canvas-edit').click(function() {
         $('#edit-canvas').foundation('reveal', 'open');
@@ -295,25 +271,6 @@ $(document).ready(function() {
             notify('error', 'Passwords don\'t match');
         }
 
-    //     db.child('canvas').child(new_id).once('value', function(snapshot) {
-    //         var doc = {};
-
-    //         if (!snapshot.val()) {
-    //             doc.id = id;
-
-    //             db.child('canvas').child(old_id).update(doc);
-
-    //             $('#canvas-name').text(new_id);
-
-    //             history.pushState(null, null, url);
-
-    //             $('#edit-canvas').foundation('reveal', 'close');
-
-    //         } else {
-    //             notify('error', 'This canvas already exists');
-    //         }
-    //     });
-
         return false;
     });
 });
@@ -357,12 +314,15 @@ function reset_all() {
     $('.e-canvas-timestamp .e-action').text('');
     $('.e-canvas-timestamp .e-timeago').text('').attr('title', '');
     $('#edit-canvas form')[0].reset();
+    $('.b-create-canvas')[0].reset();
 
     history.replaceState(null, null, window.location.pathname);
 }
 
 function state0(db) {
     var canvas_id = window.location.search.slice(6).replace('/', '');
+
+    $('.b-create-canvas select').empty();
 
     if (!canvas_id) {
         state1(db);
@@ -421,6 +381,10 @@ function state2(db, id, object) {
             $('#canvas-' + item + '-comments').val(obj[item + '_comments']);
             $('#canvas-' + item + '-timestamp .e-action').text(txt);
             $('#canvas-' + item + '-timestamp .e-timeago').attr('title', t03);
+
+            txt = obj[item + '_comments'];
+
+            $('#canvas-' + item + '-md').html(markdown.toHTML(obj[item]));
         }
 
         set_data('ux');
@@ -443,6 +407,12 @@ function state2(db, id, object) {
         set_data('activities');
         set_data('supporters');
         set_data('proposition');
+
+        $('#canvas-category option').each(function() {
+            if (obj.category == $(this).val()) {
+                $(this).prop('selected', true);
+            }
+        });
 
         $('#canvas-name').text(obj.name);
         $('#canvas-author').val(obj.author);
