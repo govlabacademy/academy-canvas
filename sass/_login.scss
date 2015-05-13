@@ -32,6 +32,28 @@
   }
 }
 
+.b-project-list {
+  .b-project-list-filters span {
+    padding: 0 10px;
+    color: $gray_60;
+    cursor: pointer;
+
+    &:hover {
+      color: $gray_80;
+    }
+  }
+
+  .e-project-list-item {
+    padding: 3px 10px 4px;
+    border-bottom: 1px solid $gray_10;
+    margin-bottom: 5px;
+
+    span {
+      cursor: pointer;
+    }
+  }
+}
+
 .b-panel {
   position: relative;
   border: 1px solid $gray_20;

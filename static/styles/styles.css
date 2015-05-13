@@ -563,6 +563,19 @@ p,
   color: #3f3f3f;
   background-color: white; }
 
+.b-project-list .b-project-list-filters span {
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer; }
+  .b-project-list .b-project-list-filters span:hover {
+    color: rgba(0, 0, 0, 0.8); }
+.b-project-list .e-project-list-item {
+  padding: 3px 10px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px; }
+  .b-project-list .e-project-list-item span {
+    cursor: pointer; }
+
 .b-panel {
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -621,13 +634,6 @@ p,
     color: rgba(0, 0, 0, 0.6);
     font-weight: 400;
     line-height: 1; }
-
-.b-project-list .e-project-list-item {
-  padding: 3px 10px 4px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px; }
-  .b-project-list .e-project-list-item span {
-    cursor: pointer; }
 
 .b-instructions {
   padding: 30px 0; }

@@ -19,7 +19,11 @@ $(document).ready(function() {
 
     window.onpopstate = function(event) { state0(db); };
 
-    $('.b-project-list').on('click', '.e-project-list-item span', function() {
+    $('.b-project-list-filters').on('click', 'span', function() {
+        $('.b-project-list-items').isotope({ filter: $(this).data('filter') });
+    });
+
+    $('.b-project-list-items').on('click', 'span', function() {
         var id = slugy($(this).text());
 
         if ($(this).hasClass('locked')) {
@@ -316,6 +320,10 @@ function reset_all() {
     $('#edit-canvas form')[0].reset();
     $('.b-create-canvas')[0].reset();
 
+    if ($('.b-project-list-items').data('isotope')) {
+        $('.b-project-list-items').isotope('destroy');
+    }
+
     history.replaceState(null, null, window.location.pathname);
 }
 
@@ -337,7 +345,7 @@ function state1(db) {
     db.unauth();
 
     db.child('canvas').once('value', function(snapshot) {
-        $('.b-project-list p').remove();
+        $('.b-project-list-items > p').remove();
 
         for (var oid in snapshot.val()) {
             var obj = snapshot.val()[oid],
@@ -348,11 +356,17 @@ function state1(db) {
                 $span.addClass('locked');
             }
 
-            $('.b-project-list').append($p.append($span));
-            $('.b-project-list').removeClass('m-display-none');
-        }
+            $p.addClass(obj.category);
 
+            $('.b-project-list-items').append($p.append($span));
+            $('.b-project-list-items').removeClass('m-display-none');
+        }
         $('#landing').removeClass('m-display-none');
+
+        $('.b-project-list-items').isotope({
+            itemSelector: '.e-project-list-item',
+            layoutMode: 'vertical',
+        });
     });
 }
 
