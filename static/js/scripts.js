@@ -1,5 +1,9 @@
-$(document).ready(function() {
-    var db = null;
+$(function() {
+    var db = null,
+        template = Handlebars.compile($('#handlebars-template').html()),
+        language = translations[getQuery('lang') || 'en'];
+
+    $('body').html(template(language));
 
     if (location.hostname == 'govlabacademy.org') {
         if (location.pathname == '/canvas/') {
@@ -50,7 +54,7 @@ $(document).ready(function() {
                     state2(db, id);
 
                 } else {
-                    notify('error', 'Wrong password');
+                    notify('error', translation.notify_1);
                 }
 
             }, {remember: 'none'}
@@ -135,12 +139,12 @@ $(document).ready(function() {
                     }
 
                 } else {
-                    notify('error', 'This canvas already exists');
+                    notify('error', translation.notify_2);
                 }
             });
 
         } else {
-            notify('error', 'Passwords don\'t match');
+            notify('error', translation.notify_3);
         }
 
         return false;
@@ -171,7 +175,7 @@ $(document).ready(function() {
 
                 db.child('canvas').child(id).update(doc);
 
-                notify('success', 'Canvas saved');
+                notify('success', translation.notify_4);
             }
 
             if ($inp.hasClass('e-canvas-content')) {
@@ -194,7 +198,7 @@ $(document).ready(function() {
 
         db.child('canvas').child(id).update(doc);
 
-        notify('success', 'Canvas saved');
+        notify('success', translation.notify_4);
     });
 
     $('.e-canvas-edit').click(function() {
@@ -225,10 +229,10 @@ $(document).ready(function() {
                             $('#edit-canvas').foundation('reveal', 'close');
                             $('#edit-canvas form')[0].reset();
 
-                            notify('success', 'Canvas saved');
+                            notify('success', translation.notify_4);
 
                         } else {
-                            notify('error', 'Error changing password');
+                            notify('error', translation.notify_5);
                         }
                     });
 
@@ -247,7 +251,7 @@ $(document).ready(function() {
                             $('#edit-canvas').foundation('reveal', 'close');
                             $('#edit-canvas form')[0].reset();
 
-                            notify('success', 'Canvas saved');
+                            notify('success', translation.notify_4);
                         }
                     });
                 }
@@ -263,16 +267,16 @@ $(document).ready(function() {
                         $('#edit-canvas').foundation('reveal', 'close');
                         $('#edit-canvas form')[0].reset();
 
-                        notify('success', 'Canvas saved');
+                        notify('success', translation.notify_4);
 
                     } else {
-                        notify('error', 'Error changing password');
+                        notify('error', translation.notify_5);
                     }
                 });
             }
 
         } else {
-            notify('error', 'Passwords don\'t match');
+            notify('error', translation.notify_3);
         }
 
         return false;
@@ -303,7 +307,24 @@ function slugy(value) {
     return unorm.nfkd(value).replace(reg1, '').replace(reg2, '_');
 }
 
+function getQuery(param) {
+    var query = location.search.substr(1),
+        result = false;
+
+    query.split('&').forEach(function(part) {
+        var item = part.split('=');
+
+        if (item[0] == param) {
+            result = decodeURIComponent(item[1]);
+        }
+    });
+
+    return result;
+}
+
 function reset_all() {
+    var url = location.pathname;
+
     $('#canvas').addClass('m-display-none');
     $('#landing').addClass('m-display-none');
     $('#canvas-name').text('');
@@ -324,11 +345,15 @@ function reset_all() {
         $('.b-project-list-items').isotope('destroy');
     }
 
-    history.replaceState(null, null, window.location.pathname);
+    if (getQuery('lang')) {
+        url += '?lang=' + getQuery('lang');
+    }
+
+    history.replaceState(null, null, url);
 }
 
 function state0(db) {
-    var canvas_id = window.location.search.slice(6).replace('/', '');
+    var canvas_id = getQuery('canvas');
 
     $('.b-create-canvas select').empty();
 
@@ -401,6 +426,8 @@ function state2(db, id, object) {
             $('#canvas-' + item + '-md').html(markdown.toHTML(obj[item]));
         }
 
+        var url = location.pathname + '?canvas=' + id;
+
         set_data('ux');
         set_data('foes');
         set_data('risk');
@@ -450,7 +477,11 @@ function state2(db, id, object) {
             }
         });
 
-        history.pushState(null, null, location.pathname + '?user=' + id);
+        if (getQuery('lang')) {
+            url += '&lang=' + getQuery('lang');
+        }
+
+        history.pushState(null, null, url);
 
         $('.e-canvas-edit').removeClass('m-display-none');
         $('.e-canvas-timestamp .e-timeago').timeago();
