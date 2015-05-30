@@ -54,7 +54,7 @@ $(function() {
                     state2(db, id);
 
                 } else {
-                    notify('error', translation.notify_1);
+                    notify('error', language.notify_1);
                 }
 
             }, {remember: 'none'}
@@ -139,12 +139,12 @@ $(function() {
                     }
 
                 } else {
-                    notify('error', translation.notify_2);
+                    notify('error', language.notify_2);
                 }
             });
 
         } else {
-            notify('error', translation.notify_3);
+            notify('error', language.notify_3);
         }
 
         return false;
@@ -175,7 +175,7 @@ $(function() {
 
                 db.child('canvas').child(id).update(doc);
 
-                notify('success', translation.notify_4);
+                notify('success', language.notify_4);
             }
 
             if ($inp.hasClass('e-canvas-content')) {
@@ -198,7 +198,7 @@ $(function() {
 
         db.child('canvas').child(id).update(doc);
 
-        notify('success', translation.notify_4);
+        notify('success', language.notify_4);
     });
 
     $('.e-canvas-edit').click(function() {
@@ -229,10 +229,10 @@ $(function() {
                             $('#edit-canvas').foundation('reveal', 'close');
                             $('#edit-canvas form')[0].reset();
 
-                            notify('success', translation.notify_4);
+                            notify('success', language.notify_4);
 
                         } else {
-                            notify('error', translation.notify_5);
+                            notify('error', language.notify_5);
                         }
                     });
 
@@ -251,7 +251,7 @@ $(function() {
                             $('#edit-canvas').foundation('reveal', 'close');
                             $('#edit-canvas form')[0].reset();
 
-                            notify('success', translation.notify_4);
+                            notify('success', language.notify_4);
                         }
                     });
                 }
@@ -267,16 +267,16 @@ $(function() {
                         $('#edit-canvas').foundation('reveal', 'close');
                         $('#edit-canvas form')[0].reset();
 
-                        notify('success', translation.notify_4);
+                        notify('success', language.notify_4);
 
                     } else {
-                        notify('error', translation.notify_5);
+                        notify('error', language.notify_5);
                     }
                 });
             }
 
         } else {
-            notify('error', translation.notify_3);
+            notify('error', language.notify_3);
         }
 
         return false;
@@ -340,6 +340,7 @@ function reset_all() {
     $('.e-canvas-timestamp .e-timeago').text('').attr('title', '');
     $('#edit-canvas form')[0].reset();
     $('.b-create-canvas')[0].reset();
+    $('.b-project-list-filters .e-category').addClass('m-display-none');
 
     if ($('.b-project-list-items').data('isotope')) {
         $('.b-project-list-items').isotope('destroy');
@@ -370,6 +371,8 @@ function state1(db) {
     db.unauth();
 
     db.child('canvas').once('value', function(snapshot) {
+        var language = translations[getQuery('lang') || 'en'];
+
         $('.b-project-list-items > p').remove();
 
         for (var oid in snapshot.val()) {
@@ -381,11 +384,21 @@ function state1(db) {
                 $span.addClass('locked');
             }
 
-            $p.addClass(obj.category);
+            for(var i = 2, cat = ''; i <= 16; i++) {
+                cat = 'filters_' + i;
+
+                if (language[cat] == obj.category) {
+                    $p.addClass(cat);
+                    $('.e-category.' + cat).removeClass('m-display-none');
+                }
+            }
 
             $('.b-project-list-items').append($p.append($span));
             $('.b-project-list-items').removeClass('m-display-none');
         }
+
+
+
         $('#landing').removeClass('m-display-none');
 
         $('.b-project-list-items').isotope({
