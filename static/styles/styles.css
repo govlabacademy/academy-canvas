@@ -101,11 +101,28 @@ p,
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.6); }
   .b-top-navigation .e-canvas-edit {
     float: right;
-    padding: 10px;
+    padding: 11px;
     cursor: pointer;
     font-size: 24px;
     font-weight: 100;
     color: white; }
+  .b-top-navigation .e-language {
+    float: right;
+    margin: 16px 10px 0 0;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer; }
+  .b-top-navigation .b-languages-links {
+    position: absolute;
+    background-color: #472b74;
+    right: 20px;
+    top: 59px; }
+    .b-top-navigation .b-languages-links li {
+      margin: 0;
+      padding: 10px 15px;
+      color: white;
+      cursor: pointer; }
 
 .b-logo {
   display: block;

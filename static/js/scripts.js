@@ -41,6 +41,35 @@ $(function() {
         return false;
     });
 
+    $('.e-language').click(function(e) {
+        e.stopPropagation();
+
+        $('.b-languages-links').removeClass('m-display-none');
+
+        return false;
+    });
+
+    $('html').click(function(e) {
+        e.stopPropagation();
+
+        $('.b-languages-links').addClass('m-display-none');
+
+        return false;
+    });
+
+    $('.b-languages-links li').click(function(e) {
+        e.stopPropagation();
+
+        var url = location.toString();
+
+        url += url.indexOf('?') >= 0 ? '&' : '?';
+        url += 'lang=' + $(this).attr('class');
+
+        location.href = url;
+
+        return false;
+    });
+
     $('#unlock-canvas form').submit(function(event) {
         var id = $(this).data('id'),
             pwd = $(this).find('input').val();
