@@ -1,3 +1,3 @@
 # GovLab Academy Canvas
 
-Create by Claudio Mendonca
+Created by Claudio Mendonca
