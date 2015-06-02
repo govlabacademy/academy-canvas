@@ -560,6 +560,35 @@ p,
 
   .fr_after_submit_page p {
     font-size: 3rem; } }
+.e-canvas-content-md h1, .e-canvas-content-md h2, .e-canvas-content-md h3, .e-canvas-content-md h4, .e-canvas-content-md h5 {
+  font-family: 'proxima-nova', sans-serif;
+  margin: 10px 0;
+  text-align: left;
+  font-style: normal !important; }
+.e-canvas-content-md h1 {
+  color: #472b74;
+  font-size: 1.6rem;
+  font-weight: 600; }
+.e-canvas-content-md h2 {
+  font-size: 1.4rem;
+  font-weight: 400; }
+.e-canvas-content-md h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase; }
+.e-canvas-content-md h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #472b74; }
+.e-canvas-content-md h5 {
+  font-size: 1rem;
+  font-weight: 600; }
+.e-canvas-content-md a {
+  text-decoration: underline;
+  font-style: italic;
+  color: #472b74; }
+
 #landing {
   padding-top: 40px;
   padding-bottom: 30px; }
