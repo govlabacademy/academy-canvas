@@ -23,8 +23,8 @@ $(function() {
 
     window.onpopstate = function(event) { state0(db); };
 
-    $('.b-project-list-filters').on('click', 'span', function() {
-        $('.b-project-list-items').isotope({ filter: $(this).data('filter') });
+    $('.b-project-list').on('change', '.b-project-list-filters', function() {
+        $('.b-project-list-items').isotope({ filter: $(this).val() });
     });
 
     $('.b-project-list-items').on('click', 'span', function() {
@@ -41,29 +41,19 @@ $(function() {
         return false;
     });
 
-    $('.e-language').click(function(e) {
-        e.stopPropagation();
-
-        $('.b-languages-links').removeClass('m-display-none');
-
-        return false;
+    $('.b-languages-links option').each(function() {
+        if ($(this).attr('value') == getQuery('lang')) {
+            $(this).prop('selected', true);
+        }
     });
 
-    $('html').click(function(e) {
-        e.stopPropagation();
-
-        $('.b-languages-links').addClass('m-display-none');
-
-        return false;
-    });
-
-    $('.b-languages-links li').click(function(e) {
+    $('.b-languages-links').change(function(e) {
         e.stopPropagation();
 
         var url = location.toString();
 
         url += url.indexOf('?') >= 0 ? '&' : '?';
-        url += 'lang=' + $(this).attr('class');
+        url += 'lang=' + $(this).val();
 
         location.href = url;
 
@@ -345,6 +335,10 @@ function getQuery(param) {
 
         if (item[0] == param) {
             result = decodeURIComponent(item[1]);
+
+            if (result.slice(-1) == '/') {
+                result = result.slice(0, -1);
+            }
         }
     });
 
@@ -421,12 +415,11 @@ function state1(db) {
                     $('.e-category.' + cat).removeClass('m-display-none');
                 }
             }
-
             $('.b-project-list-items').append($p.append($span));
             $('.b-project-list-items').removeClass('m-display-none');
         }
 
-
+        $('.e-category.m-display-none').remove();
 
         $('#landing').removeClass('m-display-none');
 

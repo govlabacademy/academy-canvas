@@ -31,11 +31,6 @@
           <a href="." class="b-logo" title="Home"><img src="static/img/govlab-logo-white.png" alt="Smarter State"/><span>{{ canvas }}</span></a>
 
           <span class="e-canvas-edit"><i class="fa fa-cog"></i></span>
-          <span class="e-language">{{ language_0 }}</span>
-          <ul class="b-languages-links m-display-none">
-            <li class="en">{{ language_1 }}</li>
-            <li class="es">{{ language_2 }}</li>
-          </ul>
         </div>
 
         <div class="b-system-message">
@@ -74,24 +69,24 @@
           <div class="row">
             <div class="column large-9 large-centered">
               <div class="b-panel b-project-list">
-                <div class="b-project-list-filters">
-                    <span data-filter="*">{{ filters_1 }}</span>
-                    <span class="e-category filters_2 m-display-none" data-filter=".filters_2">{{ filters_2 }}</span>
-                    <span class="e-category filters_3 m-display-none" data-filter=".filters_3">{{ filters_3 }}</span>
-                    <span class="e-category filters_4 m-display-none" data-filter=".filters_4">{{ filters_4 }}</span>
-                    <span class="e-category filters_5 m-display-none" data-filter=".filters_5">{{ filters_5 }}</span>
-                    <span class="e-category filters_6 m-display-none" data-filter=".filters_6">{{ filters_6 }}</span>
-                    <span class="e-category filters_7 m-display-none" data-filter=".filters_7">{{ filters_7 }}</span>
-                    <span class="e-category filters_8 m-display-none" data-filter=".filters_8">{{ filters_8 }}</span>
-                    <span class="e-category filters_9 m-display-none" data-filter=".filters_9">{{ filters_9 }}</span>
-                    <span class="e-category filters_10 m-display-none" data-filter=".filters_10">{{ filters_10 }}</span>
-                    <span class="e-category filters_11 m-display-none" data-filter=".filters_11">{{ filters_11 }}</span>
-                    <span class="e-category filters_12 m-display-none" data-filter=".filters_12">{{ filters_12 }}</span>
-                    <span class="e-category filters_13 m-display-none" data-filter=".filters_13">{{ filters_13 }}</span>
-                    <span class="e-category filters_14 m-display-none" data-filter=".filters_14">{{ filters_14 }}</span>
-                    <span class="e-category filters_15 m-display-none" data-filter=".filters_15">{{ filters_15 }}</span>
-                    <span class="e-category filters_16 m-display-none" data-filter=".filters_16">{{ filters_16 }}</span>
-                </div>
+                <select class="b-project-list-filters">
+                    <option value="*">{{ filters_1 }}</option>
+                    <option class="e-category filters_2 m-display-none" value=".filters_2">{{ filters_2 }}</option>
+                    <option class="e-category filters_3 m-display-none" value=".filters_3">{{ filters_3 }}</option>
+                    <option class="e-category filters_4 m-display-none" value=".filters_4">{{ filters_4 }}</option>
+                    <option class="e-category filters_5 m-display-none" value=".filters_5">{{ filters_5 }}</option>
+                    <option class="e-category filters_6 m-display-none" value=".filters_6">{{ filters_6 }}</option>
+                    <option class="e-category filters_7 m-display-none" value=".filters_7">{{ filters_7 }}</option>
+                    <option class="e-category filters_8 m-display-none" value=".filters_8">{{ filters_8 }}</option>
+                    <option class="e-category filters_9 m-display-none" value=".filters_9">{{ filters_9 }}</option>
+                    <option class="e-category filters_10 m-display-none" value=".filters_10">{{ filters_10 }}</option>
+                    <option class="e-category filters_11 m-display-none" value=".filters_11">{{ filters_11 }}</option>
+                    <option class="e-category filters_12 m-display-none" value=".filters_12">{{ filters_12 }}</option>
+                    <option class="e-category filters_13 m-display-none" value=".filters_13">{{ filters_13 }}</option>
+                    <option class="e-category filters_14 m-display-none" value=".filters_14">{{ filters_14 }}</option>
+                    <option class="e-category filters_15 m-display-none" value=".filters_15">{{ filters_15 }}</option>
+                    <option class="e-category filters_16 m-display-none" value=".filters_16">{{ filters_16 }}</option>
+                </select>
 
                 <h3>{{ select_canvas }}</h3>
 
@@ -399,8 +394,8 @@
             <img id="knight-logo" src="./static/img/knight-logo-white.png" alt="Knight Foundation">
           </div>
           <div class="column large-6 small-12">
-            <a class="e-release-archive-link" href="release-notes.html">{{ footer_2 }}</a>
-            <a class="e-release-archive-link" target="_blank" href="markdown-reference.html">Markdown Reference</a>
+            <a class="e-release-archive-link" href="/release-notes.html">{{ footer_2 }}</a>
+            <a class="e-release-archive-link" target="_blank" href="/markdown-reference.html">Markdown Reference</a>
             <a class="e-release-archive-link" target="_blank" href="https://docs.google.com/forms/d/1QE3k8WqPBwavrKPoLgXnRCAclxeoy4d54S3v0RHYzqM/viewform?c=0&w=1">Feedback</a>
           </div>
         </div>
@@ -412,6 +407,11 @@
       <div id="edit-canvas" class="b-edit-canvas reveal-modal row" data-reveal>
         <div class="column large-12 large-centered">
             <h3>{{ modal_1 }}</h3>
+
+            <select class="b-languages-links">
+                <option value="en">{{ language_1 }}</option>
+                <option value="es">{{ language_2 }}</option>
+            </select>
 
             <form>
                 <input type="password" name="old_pwd" placeholder="{{ modal_2 }}"/>
