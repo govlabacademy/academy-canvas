@@ -241,8 +241,9 @@ p,
   .b-footer a:hover {
     color: white; }
   .b-footer .e-release-archive-link {
-    float: right;
-    margin-top: 40px; }
+    display: block;
+    margin-top: 10px;
+    text-align: right; }
   .b-footer .e-creative-commons {
     font-size: .8rem;
     line-height: 1rem;
