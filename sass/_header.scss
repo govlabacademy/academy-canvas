@@ -45,10 +45,12 @@
 
     .b-languages-links {
         position: absolute;
-        background-color: #6F5D8B;
-        right: 20px;
+        width: 105px;
+        right: 10px;
         top: 58px;
         z-index: -1;
+        text-align: center;
+        background-color: #6F5D8B;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 
         li {
