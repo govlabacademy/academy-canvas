@@ -41,19 +41,25 @@ $(function() {
         return false;
     });
 
-    $('.b-languages-links option').each(function() {
-        if ($(this).attr('value') == getQuery('lang')) {
-            $(this).prop('selected', true);
-        }
+    $('.e-language').click(function(e) {
+        e.stopPropagation();
+
+        $('.b-languages-links').slideDown();
+
+        return false;
     });
 
-    $('.b-languages-links').change(function(e) {
+    $('html').click(function(e) {
+        $('.b-languages-links').slideUp();
+    });
+
+    $('.b-languages-links li').click(function(e) {
         e.stopPropagation();
 
         var url = location.toString();
 
         url += url.indexOf('?') >= 0 ? '&' : '?';
-        url += 'lang=' + $(this).val();
+        url += 'lang=' + $(this).attr('class');
 
         location.href = url;
 
