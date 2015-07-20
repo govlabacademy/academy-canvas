@@ -371,6 +371,11 @@ function reset_all() {
     $('.b-create-canvas')[0].reset();
     $('.b-project-list-filters .e-category').addClass('m-display-none');
 
+    $('#name-print').text('');
+    $('#author-print').text('');
+    $('#category-print').text('');
+    $('#one-liner-print').text('');
+
     if ($('.b-project-list-items').data('isotope')) {
         $('.b-project-list-items').isotope('destroy');
     }
@@ -502,6 +507,11 @@ function state2(db, id, object) {
         $('#canvas-location').val(obj.location);
         $('#edit-canvas .e-canvas-name').val(obj.name);
 
+        $('#name-print').text(obj.name);
+        $('#author-print').text(obj.author);
+        $('#category-print').text(obj.category);
+        $('#one-liner-print').text(obj.one_liner);
+
         $('.e-canvas-comment.m-display-none').each(function() {
             if ($(this).val()) {
                 $(this).removeClass('m-display-none');
@@ -527,6 +537,12 @@ function state2(db, id, object) {
         $('.e-canvas-edit').removeClass('m-display-none');
         $('.e-canvas-timestamp .e-timeago').timeago();
         $('#canvas').removeClass('m-display-none');
+
+        $('.e-canvas-line').each(function(item, index) {
+            if (index != 0) {
+                $(this).after($('.b-header-print').eq(0).clone());
+            }
+        });
     }
 
     var usr = db.getAuth();

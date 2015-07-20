@@ -43,6 +43,19 @@
         </div>
       </header>
 
+      <header class="b-header-print m-display-none">
+        <span class="b-logo"><img src="static/img/govlab-logo.png" alt="Smarter State"/></span>
+        <div class="b-middle-content">
+          <p id="category-print" class="e-category-print"></p>
+          <p id="author-print" class="e-author-print"></p>
+        </div>
+
+        <div class="b-right-content">
+          <p id="name-print" class="e-name-print"></p>
+          <p id="one-liner-print" class="e-one-liner-print"></p>
+        </div>
+      </header>
+
       <main class="b-main-content">
         <section id="landing" class="m-display-none">
           <div class="row">
@@ -63,8 +76,8 @@
               <form class="b-panel b-create-canvas">
                 <h3>{{ create_canvas_1 }}</h3>
                 <p>{{ create_canvas_2 }}</p>
-                <input type="text" name="name" placeholder="{{ create_canvas_2 }}">
-                <input type="password" name-"pwd1" placeholder="{{ create_canvas_3 }}">
+                <input type="text" name="name" placeholder="{{ create_canvas_3 }}">
+                <input type="password" name-"pwd1" placeholder="{{ create_canvas_4 }}">
                 <input type="password" name="pwd2" placeholder="{{ create_canvas_5 }}">
                 <button class="e-button">{{ create_canvas_6 }}</button>
               </form>
@@ -137,7 +150,7 @@
                 </div>
                 <div class="column large-8">
                   <i class="fa fa-lg fa-pencil"></i>
-                  <input id="canvas-author" class="e-canvas-descriptions" type="text" name="authors" placeholder="{{ description_2 }}"/>
+                  <input id="canvas-author" class="e-canvas-descriptions" type="text" name="author" placeholder="{{ description_2 }}"/>
                 </div>
 
                 <div class="column large-4">
@@ -161,7 +174,7 @@
                   <textarea id="canvas-problem-comments" class="e-canvas-comment m-display-none" name="problem_comments" placeholder="{{ comments }}"></textarea>
                   <div id="canvas-problem-timestamp" class="e-canvas-timestamp m-display-none"><i class="e-action"></i><i class="e-timeago"></i></div>
                 </div>
-              </div>`
+              </div>
 
               <div class="e-canvas-col">
                 <div class="e-canvas-section">

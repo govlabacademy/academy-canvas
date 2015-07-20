@@ -1,0 +1,145 @@
+@page {
+  margin: 1cm 0.5cm 0.5cm 0.5cm;
+}
+
+html {
+  font-size: 10pt;
+}
+
+.b-canvas-title, .b-top-navigation-wrapper, .e-add-comment, .b-footer,
+.e-canvas-timestamp {
+  display: none;
+}
+
+.b-header-print {
+  display: flex;
+  display: -webkit-flex;
+  width: 100%;
+  border-bottom: 2px solid #bbb;
+  padding: 10px 0;
+
+  .b-logo {
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    margin-right: 0.8em;
+    padding: 0 0 0 20px;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  .b-middle-content {
+    flex: 1.5 0;
+    -webkit-flex: 1.5 0;
+
+    p {
+      display: block;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      line-height: 13pt;
+    }
+
+    .e-category-print {
+      color: #333;
+      font-weight: normal;
+      font-variant: small-caps;
+    }
+
+    .e-author-print {
+      color: #333;
+      font-weight: bold;
+    }
+  }
+
+  .b-right-content {
+    flex: 2 0;
+    -webkit-flex: 2 0;
+    padding-right: 20px;
+    text-align: right;
+
+    p {
+      display: block;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      line-height: 13pt;
+    }
+
+    .e-name-print {
+      color: #333;
+      font-weight: normal;
+      font-size: 13pt;
+    }
+
+    .e-one-liner-print {
+      color: #333;
+    }
+  }
+}
+
+.b-main-content {
+  padding-top: 0;
+}
+
+.b-canvas {
+  margin: 0;
+
+  .e-canvas-line {
+    display: flex;
+    display: -webkit-flex;
+    margin-top: 40px;
+    page-break-after: always;
+    page-break-inside: avoid;
+
+    .e-canvas-col {
+      flex: 1 0;
+      max-height: 585px;
+      overflow: hidden;
+    }
+  }
+
+  .e-canvas-col + .e-canvas-col {
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .e-group-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 25px;
+    font-size: 1.3875rem;
+    margin: 40px 0 -40px 0;
+    page-break-after: avoid;
+  }
+
+  .e-canvas-section {
+    border-width: 0;
+
+    & + .e-canvas-section {
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    > h4 {
+      color: #aaa !important;
+    }
+
+    .e-canvas-content-md {
+      height: auto;
+      flex-basis: auto;
+      -webkit-flex-basis: auto;
+      border-width: 0;
+    }
+
+    .e-canvas-comment {
+      height: 120px;
+      border-width: 0;
+      color: #aaa !important;
+    }
+  }
+}
