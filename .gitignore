@@ -1,2 +1,4 @@
+.DS_Store
 .sass-cache/*
 support/*
+sass/.DS_Store
