@@ -226,6 +226,10 @@ $(function() {
         notify('success', language.notify_4);
     });
 
+    $('.e-print-canvas').click(function() {
+        window.print();
+    });
+
     $('.e-canvas-edit').click(function() {
         $('#edit-canvas').foundation('reveal', 'open');
     });
