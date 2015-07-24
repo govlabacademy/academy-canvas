@@ -36,7 +36,7 @@ body, h1, h2, h3, h4, h5, input {
     margin: 0 5px 0 0; }
     .e-button:hover {
       background-color: #472b74;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
       color: rgba(255, 255, 255, 0.7); } }
 h1 {
   font-size: 72px;
@@ -99,32 +99,21 @@ p,
 
 .b-top-navigation {
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.6); }
-  .b-top-navigation .e-canvas-edit {
+  .b-top-navigation .e-menu-item {
     float: right;
-    padding: 11px 16px;
+    padding: 16px 20px;
     border-left: 1px solid rgba(255, 255, 255, 0.15);
     cursor: pointer;
-    font-size: 24px;
-    font-weight: 100;
+    font-size: 18px;
+    font-weight: 200;
     color: white;
     transition: background-color 0.4s ease; }
-    .b-top-navigation .e-canvas-edit:hover {
-      background-color: rgba(255, 255, 255, 0.3); }
-  .b-top-navigation .e-language {
-    float: right;
-    padding: 11px 16px;
-    font-size: 16px;
-    line-height: 36px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.4s ease; }
-    .b-top-navigation .e-language:hover {
+    .b-top-navigation .e-menu-item:hover {
       background-color: rgba(255, 255, 255, 0.3); }
   .b-top-navigation .b-languages-links {
     position: absolute;
     width: 105px;
-    right: 10px;
+    right: 69px;
     top: 58px;
     z-index: -1;
     text-align: center;
@@ -132,12 +121,13 @@ p,
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }
     .b-top-navigation .b-languages-links li {
       margin: 0;
-      padding: 3px 15px;
+      padding: 6px 15px;
       border: 1px solid rgba(0, 0, 0, 0.8);
       border-top-width: 0;
       color: white;
       cursor: pointer;
-      transition: background-color 0.4s ease; }
+      transition: background-color 0.4s ease;
+      font-size: 1rem; }
       .b-top-navigation .b-languages-links li:hover {
         background-color: #201334; }
 
@@ -145,7 +135,7 @@ p,
   display: block;
   background-color: #472b74;
   padding: 2px 0 4px;
-  margin: 0;
+  margin: 0 0 0 10px;
   font-size: 24px;
   font-weight: 100;
   color: white; }
@@ -531,7 +521,7 @@ p,
   font-size: 1.2rem;
   line-height: 1.6;
   color: #333;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); }
 .fr_form .fr_input_grid {
   width: calc(100% + 10px); }
 .fr_form .fr_response_field_paragraph textarea.size_medium,
@@ -636,9 +626,11 @@ p,
 .b-project-list .e-project-list-item {
   padding: 3px 10px 4px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px; }
-  .b-project-list .e-project-list-item span {
-    cursor: pointer; }
+  margin: 0;
+  width: 100%;
+  cursor: pointer; }
+  .b-project-list .e-project-list-item:hover {
+    background-color: #f5f5f5; }
 
 .b-panel {
   position: relative;
@@ -648,7 +640,7 @@ p,
   margin: 5px;
   flex: 1;
   padding: 20px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); }
   .b-panel h3 {
     margin-bottom: 30px;
     color: rgba(0, 0, 0, 0.6);
@@ -762,7 +754,7 @@ p,
     display: flex;
     flex-flow: column;
     padding: 20px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     min-height: 400px; }
     .b-canvas .e-canvas-section h3 {
       font-size: 1rem;
@@ -866,7 +858,7 @@ p,
       font-weight: 100; }
 
   .b-top-navigation.m-full {
-    padding: 0 10px; }
+    padding: 0; }
 
   .b-canvas {
     margin-top: 40px; }

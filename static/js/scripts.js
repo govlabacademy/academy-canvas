@@ -44,13 +44,13 @@ $(function() {
     $('.e-language').click(function(e) {
         e.stopPropagation();
 
-        $('.b-languages-links').slideDown();
+        $('.b-languages-links').slideDown('fast');
 
         return false;
     });
 
     $('html').click(function(e) {
-        $('.b-languages-links').slideUp();
+        $('.b-languages-links').slideUp('fast');
     });
 
     $('.b-languages-links li').click(function(e) {
