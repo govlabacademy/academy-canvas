@@ -9,7 +9,7 @@ translations.en = {
     canvas: 'Canvas',
     canvas_saved: 'Canvas Saved',
     instructions_1: 'The GovLab Academy Canvas',
-    instructions_2: 'Use the GovLab Public Problem Solving Canvas to create and develop your public interest project. These twenty questions are designed to help you refine your understanding of the problem and those whom it affects; express your Big Idea; and turn that idea into an actionable strategy in the real world to the end of improving people's lives.',
+    instructions_2: "Use the GovLab Public Problem Solving Canvas to create and develop your public interest project. These twenty questions are designed to help you refine your understanding of the problem and those whom it affects; express your Big Idea; and turn that idea into an actionable strategy in the real world to the end of improving people's lives.",
     instructions_3: 'Use the Canvas throughout your project. Fill in it, come back to it later, refine it, and reflect on how the answers change over time. For more about why to use a canvas, different types of canvases and the rationale behind the Public Projects Canvas please',
     instructions_4: 'see this article',
     create_canvas_1: 'Create a Canvas',
