@@ -226,7 +226,7 @@ $(function() {
         notify('success', language.notify_4);
     });
 
-    $('.e-print-canvas').click(function() {
+    $('.e-canvas-print').click(function() {
         window.print();
     });
 
