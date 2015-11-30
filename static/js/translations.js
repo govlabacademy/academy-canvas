@@ -1,4 +1,4 @@
-if (!('translations' in window)) {
+if (typeof(window) == 'undefined' || !('translations' in window)) {
     translations = {};
 }
 
@@ -203,3 +203,7 @@ translations.es = {
     notify_4: 'Canvas Guardado',
     notify_5: 'Error cambiando la contraseña',
 };
+
+if (typeof(module) !== 'undefined') {
+    module.exports = translations;
+}
