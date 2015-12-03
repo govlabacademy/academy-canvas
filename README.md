@@ -5,3 +5,6 @@ However, it has moved to its own subdomain at http://canvas.govlabacademy.org/.
 
 The `index.html` in this repository is simply used to redirect users to
 its new location.
+
+The canonical repository for the canvas is now
+at https://github.com/GovLab/academy-canvas.
